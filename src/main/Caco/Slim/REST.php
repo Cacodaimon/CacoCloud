@@ -3,7 +3,10 @@ namespace Caco\Slim;
 
 /**
  * Simple abstract CRUD REST class.
+ *
+ * Class JsonView
  * @package Caco\Slim
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 abstract class REST implements ISlimApp
 {

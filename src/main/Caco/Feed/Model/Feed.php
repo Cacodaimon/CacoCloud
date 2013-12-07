@@ -3,6 +3,11 @@ namespace Caco\Feed\Model;
 
 use \Caco\MiniAR;
 
+/**
+ * Class Feed
+ * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Feed extends MiniAR
 {
     /**

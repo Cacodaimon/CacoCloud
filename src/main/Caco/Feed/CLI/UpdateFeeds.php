@@ -8,7 +8,9 @@ use Caco\Feed\SimplePieFeedReader;
 /**
  * Update all feeds cli.
  *
- * @package Caco\Feed\CLI
+ * Class UpdateFeeds
+ * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 class UpdateFeeds extends AbstractCLI
 {

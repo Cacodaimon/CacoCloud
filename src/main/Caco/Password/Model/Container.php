@@ -3,6 +3,11 @@ namespace Caco\Password\Model;
 
 use Caco\McryptContainer;
 
+/**
+ * Class Container
+ * @package Caco\Password
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Container extends \Caco\MiniAR
 {
     /**

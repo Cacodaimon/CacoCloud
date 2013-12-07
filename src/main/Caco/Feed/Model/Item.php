@@ -3,6 +3,11 @@ namespace Caco\Feed\Model;
 
 use \Caco\Config\Model\Config as Config;
 
+/**
+ * Class Item
+ * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Item extends \Caco\MiniAR
 {
     /**

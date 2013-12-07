@@ -2,8 +2,9 @@
 namespace Caco\Mail\IMAP;
 
 /**
- * POPO Class
- * @package Caco\Mail\Model
+ * Class MailBoxStatus
+ * @package Caco\Mail
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 class MailBoxStatus
 {

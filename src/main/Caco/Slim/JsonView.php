@@ -1,6 +1,11 @@
 <?php
 namespace Caco\Slim;
 
+/**
+ * Class JsonView
+ * @package Caco\Slim
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class JsonView extends \Slim\View
 {
     public function render($status)

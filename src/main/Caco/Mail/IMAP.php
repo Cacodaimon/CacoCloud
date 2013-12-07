@@ -9,7 +9,9 @@ use Caco\Mail\IMAP\MailHeader;
 /**
  * Simple facade makes the use of the php imap extension a little bit easier.
  *
+ * Class IMAP
  * @package Caco\Mail
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 class IMAP
 {

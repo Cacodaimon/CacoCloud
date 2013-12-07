@@ -3,6 +3,11 @@ namespace Caco\Slim\Auth\Model;
 
 use \Caco\MiniAR;
 
+/**
+ * Class User
+ * @package Caco\Slim\Auth
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class User extends MiniAR
 {
     /**

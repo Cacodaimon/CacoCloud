@@ -5,6 +5,7 @@ namespace Caco\Feed;
 /**
  * Interface IFeedReader
  * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 interface IFeedReader
 {

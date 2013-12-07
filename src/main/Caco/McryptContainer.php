@@ -3,9 +3,8 @@ namespace Caco;
 
 /**
  * Class McryptContainer
- *
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
- * @package Caco\Password
+ * @package Caco
  */
 class McryptContainer
 {

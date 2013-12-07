@@ -1,6 +1,11 @@
 <?php
 namespace Caco\Mail\IMAP;
 
+/**
+ * Class Account
+ * @package Caco\Mail
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Account implements \JsonSerializable
 {
     const TYPE_IMAP = 1;

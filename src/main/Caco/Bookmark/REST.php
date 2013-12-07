@@ -3,6 +3,11 @@ namespace Caco\Bookmark;
 
 use \Caco\Bookmark\Model\Bookmark;
 
+/**
+ * Class REST
+ * @package Caco\Bookmark
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class REST extends \Caco\Slim\REST
 {
     public function __construct()

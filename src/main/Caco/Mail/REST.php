@@ -7,6 +7,11 @@ use Slim\Slim;
 use Caco\Slim\ISlimApp;
 use PHPMailer;
 
+/**
+ * Class REST
+ * @package Caco\Mail
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class REST implements ISlimApp
 {
     /**

@@ -4,6 +4,11 @@ namespace Caco\Slim\Auth;
 use \Slim\Middleware;
 use Caco\Slim\Auth\Model\User;
 
+/**
+ * Class Basic
+ * @package Caco\Slim\Auth
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Basic extends Middleware
 {
     /**

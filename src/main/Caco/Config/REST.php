@@ -3,6 +3,11 @@ namespace Caco\Config;
 
 use Caco\Config\Model\Config;
 
+/**
+ * Class REST
+ * @package Caco\Config
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class REST implements \Caco\Slim\ISlimApp
 {
     public function one($key)

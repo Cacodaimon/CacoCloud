@@ -6,6 +6,11 @@ use \Caco\Mcrypt;
 use \Caco\Slim\ISlimApp;
 use \Caco\Password\Model\Container;
 
+/**
+ * Class REST
+ * @package Caco\Password
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class REST implements ISlimApp
 {
     /**

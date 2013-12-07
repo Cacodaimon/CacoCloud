@@ -1,6 +1,11 @@
 <?php
 namespace Caco\CLI;
 
+/**
+ * Class AbstractCLI
+ * @package Caco\CLI
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 abstract class AbstractCLI implements  ICLI
 {
     /**

@@ -1,6 +1,11 @@
 <?php
 namespace Caco\Bookmark\Model;
 
+/**
+ * Class Bookmark
+ * @package Caco\Bookmark
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Bookmark extends \Caco\MiniAR
 {
     /**

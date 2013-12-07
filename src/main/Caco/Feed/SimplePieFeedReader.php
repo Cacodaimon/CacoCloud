@@ -4,6 +4,9 @@ namespace Caco\Feed;
 /**
  * SimplePie facade class which implements IFeedReader.
  *
+ * Class SimplePieFeedReader
+ * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 class SimplePieFeedReader implements IFeedReader
 {

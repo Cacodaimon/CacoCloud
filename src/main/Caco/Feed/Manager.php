@@ -6,6 +6,11 @@ use Caco\Config\Model\Config;
 use Caco\Feed\Model\Feed;
 use Caco\Feed\Model\Item;
 
+/**
+ * Class Manager
+ * @package Caco\Feed
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Manager
 {
     /**

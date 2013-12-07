@@ -1,6 +1,11 @@
 <?php
 namespace Caco\Mail\IMAP;
 
+/**
+ * Class MailHeader
+ * @package Caco\Mail
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class MailHeader
 {
     /**

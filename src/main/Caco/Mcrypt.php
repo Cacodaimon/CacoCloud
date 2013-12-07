@@ -4,8 +4,9 @@ namespace Caco;
 /**
  * Mcrypt wrapper class.
  *
+ * Class Mcrypt
+ * @package Caco
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
- * @package Caco\Password
  */
 class Mcrypt
 {

@@ -1,6 +1,11 @@
 <?php
 namespace Caco\Config\Model;
 
+/**
+ * Class Config
+ * @package Caco\Config
+ * @author Guido Krömer <mail 64 cacodaemon 46 de>
+ */
 class Config extends \Caco\MiniAR
 {
     const FALSE = 'false';
