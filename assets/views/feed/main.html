@@ -1,0 +1,36 @@
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-class="{active: currentFeedId == 0}">
+                    <a href="#/feed/show">
+                        <span><span class="fa fa-rss"></span> All feeds</span>
+                        <span class="label label-success pull-right">{{feeds|sumByKey:'unread'}}</span>
+                    </a>
+                </li>
+                <li ng-repeat="feed in feeds"
+                    ng-class="{active: currentFeedId == feed.id}">
+                    <a href="#/feed/show/{{feed.id}}">
+                        <img ng-show="!feed.outdated"
+                             ng-src="icons/feed/{{feed.id}}.ico"
+                             width="16px"
+                             height="16px" />
+
+                        <span class="fa fa-spinner fa-spin"
+                              ng-show="feed.outdated"></span>
+
+                        <span ng-bind-html-unsafe="feed.title"></span>
+
+                        <span class="label label-success pull-right"
+                              ng-show="feed.unread > 0">{{feed.unread}}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9 col-md-8"
+             ui-view
+             ng-animate="'fade'"></div>
+    </div>
+</div>

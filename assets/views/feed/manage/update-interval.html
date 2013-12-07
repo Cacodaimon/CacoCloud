@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-lg-6">
+        <form ng-submit="save()"
+              class="form-horizontal">
+            <fieldset>
+                <legend>Update interval</legend>
+
+                <div class="form-group row">
+                    <label for="update-interval-min"
+                           class="col-lg-4 control-label">Minimum interval
+                    </label>
+                    <div class="col-lg-8 input-group">
+                        <input type="number"
+                               class="form-control"
+                               id="update-interval-min"
+                               ng-model="config['update-interval-min']"
+                               required="required" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-clock-o"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="update-interval-max"
+                           class="col-lg-4 control-label">Maximum interval
+                    </label>
+                    <div class="col-lg-8 input-group">
+                        <input type="number"
+                               class="form-control"
+                               id="update-interval-max"
+                               ng-model="config['update-interval-max']"
+                               required="required" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-clock-o"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-8">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            <span class="fa fa-save"></span> Save
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <form ng-submit="calculateUpdateInterval()"
+              class="form-horizontal">
+            <fieldset>
+                <legend>Calculate optimal feed update interval</legend>
+
+                <div ng-show="calculating" class="alert alert-info">
+                    <span class="fa fa-gear fa-spin"></span>
+                    Calculating...
+                </div>
+                <div ng-show="calculated" class="alert alert-success">
+                    Calculated!
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            <span class="fa fa-gears"></span> Calculate
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

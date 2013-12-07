@@ -1,0 +1,11 @@
+{
+    "name": "caco-cloud",
+    "description": "caco-cloud combines a feed reader, a bookmark manager, mail reader and a password manager in a fast and secure app.",
+    "launch_path": "/",
+    "developer": {
+        "name": "Guido Krömer",
+        "url": "http://www.cacodaemon.de"
+    },
+    "default_locale": "en",
+    "fullscreen": "true"
+}

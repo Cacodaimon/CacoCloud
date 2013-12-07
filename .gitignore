@@ -1,0 +1,23 @@
+# NodeJS
+node_modules
+
+# PHP Composer
+composer.phar
+composer.lock
+vendor/
+vendor/*
+vendor/autoload/
+vendor/autoload.php
+
+# SQLite
+*.sqlite3
+
+# Static Files
+*.ico
+
+# Grunt compiled files
+public/scripts/app.min.js
+public/scripts/vendor.min.js
+public/css/app.min.css
+public/index.html
+public/views/*

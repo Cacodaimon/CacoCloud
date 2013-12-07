@@ -1,0 +1,22 @@
+<table class="table table-striped table-condensed">
+    <tbody>
+    <tr ng-repeat="account in accounts">
+        <td>
+            {{account.name}}
+        </td>
+        <td width="100px">
+            <div class="btn-group pull-right" >
+                <a href="#/mail/manage/edit/{{account.id}}"
+                   class="btn btn-warning btn-sm">
+                    <span class="fa fa-edit"></span>
+                </a>
+                <button type="button"
+                        class="btn btn-danger btn-sm"
+                        ng-click="delete(account.id)">
+                    <span class="fa fa-trash-o"></span>
+                </button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

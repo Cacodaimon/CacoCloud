@@ -1,0 +1,46 @@
+<ul class="pagination text-center visible-md visible-lg"
+    ng-show="paginator.show()">
+    <li ng-click="paginator.firstPage()"
+        ng-class="{disabled: paginator.isFirstPage()}">
+        <a>
+            <span class="fa fa-fast-backward icon-fast-backward"></span>
+        </a>
+    </li>
+    <li ng-click="paginator.perviousPage()"
+        ng-class="{disabled: paginator.isFirstPage()}">
+        <a>
+            <span class="fa fa-backward"></span>
+        </a>
+    </li>
+    <li ng-click="paginator.setPage(i)"
+        ng-repeat="i in [] | forLoop:0:paginator.pageCount()"
+        ng-class="{active: paginator.page == i}">
+        <a>{{i+1}}</a>
+    </li>
+    <li ng-click="paginator.nextPage()"
+        ng-class="{disabled: paginator.isLastPage()}">
+        <a>
+            <span class="fa fa-forward"></span>
+        </a>
+    </li>
+    <li ng-click="paginator.lastPage()"
+        ng-class="{disabled: paginator.isLastPage()}">
+        <a>
+            <span class="fa fa-fast-forward"></span>
+        </a>
+    </li>
+</ul>
+
+<ul class="pager visible-xs visible-sm"
+    ng-show="paginator.show()">
+    <li class="previous"
+        ng-class="{disabled: paginator.isFirstPage()}"
+        ng-click="paginator.perviousPage()">
+        <a><span class="fa fa-backward"></span></a>
+    </li>
+    <li class="next"
+        ng-class="{disabled: paginator.isLastPage()}"
+        ng-click="paginator.nextPage()">
+        <a><span class="fa fa-forward"></span></a>
+    </li>
+</ul>

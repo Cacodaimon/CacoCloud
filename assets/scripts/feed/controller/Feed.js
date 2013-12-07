@@ -1,0 +1,1 @@
+angular.module('caco.feed.crtl', ['caco.feed.REST', 'caco.general.REST', 'caco.feed.backend']);

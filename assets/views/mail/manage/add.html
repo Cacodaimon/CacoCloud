@@ -1,0 +1,255 @@
+<form ng-submit="add()"
+      class="form-horizontal">
+    <fieldset>
+        <legend>Add a mail account</legend>
+
+        <div class="form-group row">
+            <label for="name"
+                   class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       required="required"
+                       ng-model="newAccount.name" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>IMAP/POP3 settings</legend>
+
+        <div class="form-group row">
+            <label for="imap-user"
+                   class="col-lg-2 control-label">User</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="imap-user"
+                       ng-model="newAccount.imap.userName"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="imap-password"
+                   class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10 input-group">
+                <input type="password"
+                       class="form-control"
+                       id="imap-password"
+                       ng-model="newAccount.imap.password"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="imap-host"
+                   class="col-lg-2 control-label">Host</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="imap-host"
+                       placeholder="imap.example.com"
+                       ng-model="newAccount.imap.host"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="imap-port"
+                   class="col-lg-2 control-label">Port</label>
+            <div class="col-lg-10 input-group">
+                <input type="number"
+                       class="form-control"
+                       id="imap-port"
+                       placeholder="993"
+                       ng-model="newAccount.imap.port"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="imap-type"
+                   class="col-lg-2 control-label">Type</label>
+            <div class="col-lg-10 input-group">
+                <select id="imap-type"
+                        class="form-control"
+                        ng-model="newAccount.imap.type">
+                    <option value="1" selected="selected">IMAP</option>
+                    <option value="0">POP3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.imap.ssl"> SSL
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.imap.tls"> TLS
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.imap.noTls"> no TLS
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.imap.secure"> Secure
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.imap.validateCert"> validate certificate
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>SMTP settings</legend>
+
+        <div class="form-group row">
+            <label for="smtp-realName"
+                   class="col-lg-2 control-label">Real name</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="smtp-realName"
+                       ng-model="newAccount.smtp.realName" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-userName"
+                   class="col-lg-2 control-label">User</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="smtp-userName"
+                       ng-model="newAccount.smtp.userName"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-password"
+                   class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10 input-group">
+                <input type="password"
+                       class="form-control"
+                       id="smtp-password"
+                       ng-model="newAccount.smtp.password"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-host"
+                   class="col-lg-2 control-label">Host</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="smtp-host"
+                       ng-model="newAccount.smtp.host"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-port"
+                   class="col-lg-2 control-label">Port</label>
+            <div class="col-lg-10 input-group">
+                <input type="number"
+                       class="form-control"
+                       id="smtp-port"
+                       placeholder="587"
+                       ng-model="newAccount.smtp.port"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="newAccount.smtp.auth"> Auth
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-authType"
+                   class="col-lg-2 control-label">Auth type</label>
+            <div class="col-lg-10 input-group">
+                <select id="smtp-authType"
+                        class="form-control"
+                        ng-model="newAccount.smtp.authType">
+                    <option value="LOGIN" selected="selected">LOGIN</option>
+                    <option value="PLAIN">PLAIN</option>
+                    <option value="NTLM">NTLM</option>
+                    <option value="CRAM-MD5">CRAM-MD5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="smtp-secure"
+                   class="col-lg-2 control-label">Secure</label>
+            <div class="col-lg-10 input-group">
+                <select id="smtp-secure"
+                        class="form-control"
+                        ng-model="newAccount.smtp.secure">
+                    <option value="SSL" selected="selected">SSL</option>
+                    <option value="TLS">TLS</option>
+                    <option value="">none</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit"
+                        class="btn btn-success">
+                    <span class="fa fa-save"></span> Add
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

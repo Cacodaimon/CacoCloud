@@ -1,0 +1,108 @@
+<form ng-submit="save()"
+      class="form-horizontal">
+    <fieldset>
+        <legend>Feed auto cleanup</legend>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-true-value="true"
+                               ng-false-value="false"
+                               ng-model="config['auto-cleanup-enabled']"> Enabled
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-true-value="true"
+                               ng-false-value="false"
+                               ng-model="config['auto-cleanup-only-read']"> Only read items
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="auto-cleanup-days"
+                   class="col-lg-2 control-label">Days
+            </label>
+            <div class="col-lg-10 input-group">
+                <input type="number"
+                       class="form-control"
+                       id="auto-cleanup-days"
+                       ng-model="config['auto-cleanup-days']"
+                       required="required" />
+                <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="auto-cleanup-min-item-count"
+                   class="col-lg-2 control-label">Minimum items
+            </label>
+            <div class="col-lg-10 input-group">
+                <input type="number"
+                       class="form-control"
+                       id="auto-cleanup-min-item-count"
+                       ng-model="config['auto-cleanup-min-item-count']"
+                       required="required" />
+                <span class="input-group-addon">
+                    <span class="fa fa-list"></span>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Maximum item count per feed</legend>
+
+        <div class="form-group row">
+            <div class="col-lg-offset-2 col-lg-10 input-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-true-value="true"
+                               ng-false-value="false"
+                               ng-model="config['auto-cleanup-max-item-count-enabled']"> Enabled
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="auto-cleanup-max-item-count"
+                   class="col-lg-2 control-label">Maximum items
+            </label>
+            <div class="col-lg-10 input-group">
+                <input type="number"
+                       class="form-control"
+                       id="auto-cleanup-max-item-count"
+                       ng-model="config['auto-cleanup-max-item-count']"
+                       required="required" />
+                <span class="input-group-addon">
+                    <span class="fa fa-list"></span>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit"
+                        class="btn btn-primary">
+                    <span class="fa fa-save"></span> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

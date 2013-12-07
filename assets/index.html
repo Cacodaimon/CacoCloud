@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="caco">
+<head>
+    <meta charset="utf-8">
+    <title>caco[pass|bookmark|rss|mail]</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="author"
+          content="Guido Krömer">
+    <link href="css/app.min.css"
+          rel="stylesheet">
+    <link href="css/font-awesome.min.css"
+          rel="stylesheet">
+    <link href="css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body id="body">
+
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-main"
+     role="navigation">
+
+    <div class="navbar-header">
+        <button type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/welcome">caco</a>
+    </div>
+
+    <div class="collapse navbar-collapse"
+         id="main-navbar-collapse">
+        <ul class="nav navbar-nav">
+
+            <li>
+                 <a href="#/password">
+                     <span class="fa fa-lock" title="password"></span>
+                 </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown">
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#/password/add">
+                            <span class="fa fa-plus"></span> Add password
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#/bookmark">
+                    <span class="fa fa-bookmark" title="bookmark"></span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown">
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#/bookmark/add">
+                            <span class="fa fa-plus"></span> Add bookmark
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#/feed/show">
+                    <span class="fa fa-rss" title="rss"></span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown">
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#/feed/manage/add">
+                            <span class="fa fa-plus"></span> Add feed
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/feed/manage">
+                            <span class="fa fa-wrench"></span> Manage
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#/mail">
+                    <span class="fa fa-envelope" title="mail"></span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown">
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#/mail/send">
+                            <span class="fa fa-pencil"></span> Send a E-Mail
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/mail/manage/add">
+                            <span class="fa fa-plus"></span> Add a E-Mail account
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/mail/manage">
+                            <span class="fa fa-wrench"></span> Manage E-Mail accounts
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="hidden-xs">
+                <span class="fa fa-spinner fa-spin fa-3x fa-inverse"
+                      ng-show="loading > 0"></span>
+            </li>
+        </ul>
+
+        <form class="navbar-form navbar-right"
+              role="search">
+            <a class="btn btn-danger btn-sm"
+               href="#/logout">
+                <span class="fa fa-sign-out"></span> Logout
+            </a>
+        </form>
+    </div>
+</nav>
+
+<div ui-view>
+</div>
+
+<script src="scripts/vendor.min.js"></script>
+<script src="scripts/vendor/zxcvbn/zxcvbn.min.js"></script>
+<script src="scripts/app.min.js"></script>
+</body>
+</html>

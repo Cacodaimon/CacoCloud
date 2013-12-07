@@ -1,0 +1,41 @@
+<form ng-submit="add()"
+      class="form-horizontal">
+    <fieldset>
+        <legend>Add a bookmark</legend>
+
+        <div class="form-group row">
+            <label for="title"
+                   class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text"
+                       class="form-control"
+                       id="title"
+                       ng-model="newBookmark.name" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="url"
+                   class="col-lg-2 control-label">URL</label>
+            <div class="col-lg-10 input-group">
+                <input type="url"
+                       class="form-control"
+                       id="url"
+                       ng-model="newBookmark.url"
+                       required="required" />
+                <span class="input-group-addon">
+                    <span class="fa fa-link"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit"
+                        class="btn btn-success">
+                    <span class="fa fa-save"></span> Add
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

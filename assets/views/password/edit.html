@@ -1,0 +1,141 @@
+<form ng-submit="edit()"
+      class="form-horizontal">
+    <input type="hidden" ng-model="container.id" />
+
+    <fieldset>
+        <legend>Decryption</legend>
+
+        <div class="form-group row">
+            <label for="client-key-decrypt"
+                   class="col-lg-2 control-label">Client Key</label>
+            <div class="col-lg-10">
+                <input type="password"
+                       class="form-control"
+                       id="client-key-decrypt"
+                       ng-model="clientKeyDecrypt"
+                       required="required"/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{container.name}}</legend>
+
+        <div class="form-group row"
+             ng-show="container.site">
+            <label for="site"
+                   class="col-lg-2 control-label">Site</label>
+            <div class="col-lg-10">
+                <input type="url"
+                       class="form-control"
+                       id="site"
+                       ng-model="container.site"/>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="container.user">
+            <label for="user"
+                   class="col-lg-2 control-label">User</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="user"
+                       ng-model="container.user"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-user"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="container.email">
+            <label for="email"
+                   class="col-lg-2 control-label">E-Mail</label>
+            <div class="col-lg-10 input-group">
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       ng-model="container.email"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-envelope"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="decryptedContainer.password">
+            <label class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       ng-model="decryptedContainer.password"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="decryptedContainer.key.public">
+            <label class="col-lg-2 control-label">Public Key</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       ng-model="decryptedContainer.key.public"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="decryptedContainer.key.private">
+            <label class="col-lg-2 control-label">Private Key</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       ng-model="decryptedContainer.key.private"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row"
+             ng-show="decryptedContainer.license">
+            <label for="license"
+                   class="col-lg-2 control-label">License Key</label>
+            <div class="col-lg-10 input-group">
+                <textarea id="license"
+                          class="form-control"
+                          rows="3"
+                          ng-model="decryptedContainer.license"></textarea>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Encryption</legend>
+
+        <div class="form-group row">
+            <label for="client-key"
+                   class="col-lg-2 control-label">Client Key</label>
+            <div class="col-lg-10">
+                <input type="password"
+                       class="form-control"
+                       id="client-key"
+                       ng-model="clientKey"
+                       required="required"/>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit"
+                    class="btn btn-warning">
+                <span class="fa fa-save"></span> Edit
+            </button>
+        </div>
+    </div>
+</form>

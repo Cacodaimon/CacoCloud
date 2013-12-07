@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: modulePath == '/feed/manage/add'}">
+                    <a href="#/feed/manage/add">
+                        <span class="fa fa-plus"></span>
+                        Add
+                    </a>
+                </li>
+                <li ng-class="{active: modulePath == '/feed/manage'}">
+                    <a href="#/feed/manage">
+                        <span class="fa fa-rss"></span>
+                        Feeds
+                    </a>
+                </li>
+                <li ng-class="{active: modulePath == '/feed/manage/auto-cleanup'}">
+                    <a href="#/feed/manage/auto-cleanup">
+                        <span class="fa fa-trash-o"></span>
+                        Auto cleanup
+                    </a>
+                </li>
+                <li ng-class="{active: modulePath == '/feed/manage/update-interval'}">
+                    <a href="#/feed/manage/update-interval">
+                        <span class="fa fa-clock-o"></span>
+                        Update interval
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <div ui-view
+                 ng-animate="'fade'"></div>
+        </div>
+    </div>
+</div>

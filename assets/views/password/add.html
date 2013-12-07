@@ -1,0 +1,152 @@
+<form ng-submit="add()"
+      class="form-horizontal">
+    <fieldset>
+        <legend>Add a password</legend>
+
+        <div class="form-group row">
+            <label for="name"
+                   class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       ng-model="container.name"
+                       required="required"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="site"
+                   class="col-lg-2 control-label">Site</label>
+            <div class="col-lg-10 input-group">
+                <input type="url"
+                       class="form-control"
+                       id="site"
+                       ng-model="container.site"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-link"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="user"
+                   class="col-lg-2 control-label">User</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="user"
+                       ng-model="container.user"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-user"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email"
+                   class="col-lg-2 control-label">E-Mail</label>
+            <div class="col-lg-10 input-group">
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       ng-model="container.email"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-envelope"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password"
+                   class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="password"
+                       ng-model="container.password"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-lg-2 control-label">Password security</label>
+            <div class="col-lg-10">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-{{passwordScoreText}}"
+                         role="progressbar"
+                         aria-valuenow="48"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: {{passwordScore}}%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="public-key"
+                   class="col-lg-2 control-label">Public Key</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="public-key"
+                       ng-model="container.key.public"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="private-key"
+                   class="col-lg-2 control-label">Private Key</label>
+            <div class="col-lg-10 input-group">
+                <input type="text"
+                       class="form-control"
+                       id="private-key"
+                       ng-model="container.key.private"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock"></span>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="license"
+                   class="col-lg-2 control-label">License Key</label>
+            <div class="col-lg-10 input-group">
+                <textarea id="license"
+                          class="form-control"
+                          rows="3"
+                          ng-model="container.license"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Encryption</legend>
+
+        <div class="form-group row">
+            <label for="client-key"
+                   class="col-lg-2 control-label">Client Key</label>
+            <div class="col-lg-10">
+                <input type="password"
+                       class="form-control"
+                       id="client-key"
+                       ng-model="clientKey"
+                       required="required"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit"
+                        class="btn btn-success">
+                    <span class="fa fa-save"></span> Add
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

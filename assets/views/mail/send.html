@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <form ng-submit="send()"
+          class="form-horizontal">
+            <fieldset>
+                <legend>Send a mail</legend>
+
+                <div class="form-group row">
+                    <label for="mail-from"
+                           class="col-lg-1 control-label">From</label>
+                    <div class="col-lg-5 input-group">
+                        <select id="mail-from"
+                                class="form-control"
+                                required="required"
+                                ng-model="mail.fromId">
+                            <option ng-repeat="account in accounts"
+                                    value="{{account.id}}">{{account.name}}</option>
+                        </select>
+                    </div>
+
+                    <label for="mail-to"
+                           class="col-lg-1 control-label">To</label>
+                    <div class="col-lg-5 input-group">
+                        <input type="text"
+                               class="form-control"
+                               id="mail-to"
+                               ng-model="mail.to"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="mail-cc"
+                           class="col-lg-1 control-label">CC</label>
+                    <div class="col-lg-5 input-group">
+                        <input type="text"
+                               class="form-control"
+                               id="mail-cc"
+                               ng-model="mail.cc"/>
+                    </div>
+
+                    <label for="mail-bcc"
+                           class="col-lg-1 control-label">BCC</label>
+                    <div class="col-lg-5 input-group">
+                        <input type="text"
+                               class="form-control"
+                               id="mail-bcc"
+                               ng-model="mail.bcc"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="mail-subject"
+                           class="col-lg-1 control-label">Subject</label>
+                    <div class="col-lg-11 input-group">
+                        <input type="text"
+                               class="form-control"
+                               id="mail-subject"
+                               required="required"
+                               ng-model="mail.subject"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="mail-body"
+                           class="col-lg-1 control-label">Text</label>
+                    <div class="col-lg-11 input-group">
+                        <textarea id="mail-body"
+                                  class="form-control"
+                                  rows="5"
+                                  required="required"
+                                  ng-model="mail.body"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-11">
+                        <button type="submit"
+                                class="btn btn-success">
+                            <span class="fa fa-envelope"></span> Send
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

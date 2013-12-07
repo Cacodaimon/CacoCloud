@@ -1,0 +1,30 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <form ng-submit="auth()"
+              class="form-horizontal col-md-12">
+            <fieldset>
+                <legend>Authorize</legend>
+
+                <div class="form-group row">
+                    <label for="email-key" class="col-lg-2 control-label">E-Mail Key</label>
+                    <div class="col-lg-10">
+                        <input type="password"
+                               class="form-control"
+                               id="email-key"
+                               ng-model="emailKey" required="required"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            <span class="fa fa-unlock"></span> Authorize
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

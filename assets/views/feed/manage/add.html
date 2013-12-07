@@ -1,0 +1,62 @@
+<div class="row">
+    <form ng-submit="lookup()"
+          class="form-horizontal col-lg-6">
+        <fieldset>
+            <legend>Lookup a feed url</legend>
+                <div class="form-group row">
+                    <label for="lookup-url"
+                           class="col-lg-2 control-label">URL</label>
+                    <div class="col-lg-10 input-group">
+                        <input type="url"
+                               class="form-control"
+                               id="lookup-url"
+                               ng-model="lookupUrl"
+                               required="required" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-link"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            <span class="fa fa-search"></span> Lookup
+                        </button>
+                    </div>
+                </div>
+        </fieldset>
+    </form>
+
+    <form ng-submit="add()"
+          class="form-horizontal col-lg-6">
+        <fieldset>
+            <legend>Add a feed</legend>
+
+            <div class="form-group row">
+                <label for="url"
+                       class="col-lg-2 control-label">URL</label>
+                <div class="col-lg-10 input-group">
+                    <input type="url"
+                           class="form-control"
+                           id="url"
+                           ng-model="feed.url"
+                           required="required" />
+                    <span class="input-group-addon">
+                        <span class="fa fa-link"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit"
+                            class="btn btn-success">
+                        <span class="fa fa-plus"></span> Add
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

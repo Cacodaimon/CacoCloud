@@ -1,0 +1,1 @@
+angular.module('caco.mail.crtl', ['caco.mail.REST']);

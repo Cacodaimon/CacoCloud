@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="account in accounts">
+                    <span class="fa fa-envelope"></span>
+                    <strong>
+                        {{account.name}}
+                    </strong>
+                    <ul class="nav nav-pills nav-stacked nav-stacked-deep">
+                        <li ng-repeat="mailBox in account.mailBoxes"
+                            ng-class="{active: id == account.id && mailBoxBase64 == mailBox.base64Name}">
+                            <a href="#/mail/list/{{account.id}}/{{mailBox.base64Name}}"
+                               ng-show="mailBox.messages">
+                                <span class="fa fa-folder"></span>
+                                {{mailBox.name}} ({{mailBox.messages}})
+                                <span ng-show="mailBox.unseen">
+                                    <span class="label label-danger pull-right">{{mailBox.unseen}}</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-8 col-md-8"
+             ui-view
+             ng-animate="'fade'"></div>
+    </div>
+</div>

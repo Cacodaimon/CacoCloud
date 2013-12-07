@@ -1,0 +1,39 @@
+<form ng-submit="edit()"
+      class="form-horizontal col-md-12">
+    <fieldset>
+        <legend>Edit a feed</legend>
+
+        <div class="form-group row">
+            <label for="title"
+                   class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text"
+                       class="form-control"
+                       id="title"
+                       ng-model="feed.title"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="url"
+                   class="col-lg-2 control-label">URL</label>
+            <div class="col-lg-10">
+                <input type="url"
+                       class="form-control"
+                       id="url"
+                       ng-model="feed.url"
+                       required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit"
+                        class="btn btn-warning">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

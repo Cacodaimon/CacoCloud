@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: modulePath == '/mail/manage/add'}">
+                    <a href="#/mail/manage/add">
+                        <span class="fa fa-plus"></span>
+                        Add
+                    </a>
+                </li>
+                <li ng-class="{active: modulePath == '/mail/manage'}">
+                    <a href="#/mail/manage">
+                        <span class="fa fa-envelope"></span>
+                        Accounts
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <div ui-view
+                 ng-animate="'fade'"></div>
+        </div>
+    </div>
+</div>
