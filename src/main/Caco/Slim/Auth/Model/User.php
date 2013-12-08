@@ -21,6 +21,8 @@ class User extends MiniAR
     protected $hash;
 
     /**
+     * Sets a password for the current user.
+     *
      * @param string $password
      */
     public function setPassword($password)
@@ -38,6 +40,8 @@ class User extends MiniAR
     }
 
     /**
+     * Reads a user from the database.
+     *
      * @param string $userName
      * @return bool
      */
@@ -60,8 +64,22 @@ class User extends MiniAR
         return true;
     }
 
+    /**
+     * Checks if the given password is valid for the user.
+     *
+     * @param string $password
+     * @return bool
+     */
     public function isValid($password)
     {
         return $this->hash == crypt($password, $this->hash);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->userName;
     }
 }
