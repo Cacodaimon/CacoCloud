@@ -66,6 +66,6 @@ abstract class AbstractCLI implements  ICLI
      */
     protected function printLine($message, $format = 'Y-m-d H:i:s')
     {
-        printf('[%s] %s %s', $message, date($format), PHP_EOL);
+        printf('[%s] %s %s', date($format), $message, PHP_EOL);
     }
 }
