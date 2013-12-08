@@ -80,6 +80,6 @@ class User extends MiniAR
      */
     public function __toString()
     {
-        return $this->userName;
+        return empty($this->userName) || !is_string($this->userName) ? '' : $this->userName;
     }
 }
