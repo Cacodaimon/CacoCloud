@@ -3,7 +3,6 @@ angular.module('caco.mail.crtl')
         MailREST.one($stateParams, function (data) {
             var mail = data.response;
 
-            console.log(mail);
             if (!mail.seen) {
                 $rootScope.$broadcast('MailChanged', {id: $stateParams.id, mailBox: $stateParams.mailBox});
             }
