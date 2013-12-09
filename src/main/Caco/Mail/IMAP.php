@@ -459,7 +459,7 @@ class IMAP
             case 1:
                 return imap_8bit($body);
             case 2:
-                return imap_binary($body);
+                return imap_base64(imap_binary($body));
             case 3:
                 return imap_base64($body);
             case 4:
