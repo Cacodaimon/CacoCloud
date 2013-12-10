@@ -53,6 +53,8 @@ module.exports = function (grunt) {
         'assets/scripts/vendor-js/jquery/jquery-2.0.3.min.js',
         'assets/scripts/vendor-js/angular/angular.min.js',
         'assets/scripts/vendor-js/angular/angular-resource.min.js',
+        'assets/scripts/vendor-js/angular/angular-animate.min.js',
+        'assets/scripts/vendor-js/angular/angular-sanitize.min.js',
         'assets/scripts/vendor-js/angular/angular-ui-router.min.js',
         'assets/scripts/vendor-js/bootstrap/bootstrap.min.js',
         'assets/scripts/vendor-js/crypto-js/aes.js',

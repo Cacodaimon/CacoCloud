@@ -8,13 +8,14 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="header in headers | orderBy:'unixTimeStamp':true">
+    <tr class="fade-in-and-out"
+        ng-repeat="header in headers | orderBy:'unixTimeStamp':true">
         <td>
             <a href="#/mail/read/{{id}}/{{mailBoxBase64}}/{{header.uniqueId}}">
-                <span ng-show="header.seen">
+                <span ng-if="header.seen">
                     {{header.subject}}
                 </span>
-                <strong ng-hide="header.seen">
+                <strong ng-if="!header.seen">
                     {{header.subject}}
                 </strong>
             </a>

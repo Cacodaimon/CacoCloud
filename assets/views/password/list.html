@@ -12,20 +12,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="password in passwords | filter:searchText">
+    <tr class="fade-in-and-out"
+        ng-repeat="password in passwords | filter:searchText">
         <td>
             <a href="#/password/edit/{{password.id}}">
                 {{password.name}}
             </a>
             <br />
             <span class="label label-info"
-                  ng-show="password.site">
+                  ng-if="password.site">
                 {{password.site}}
             </span>
         </td>
         <td>
             <span class="label label-default"
-                  ng-show="password.date">
+                  ng-if="password.date">
                 {{password.date | unixTimeStamp | date:'yyyy-MM-dd HH:mm'}}
             </span>
         </td>

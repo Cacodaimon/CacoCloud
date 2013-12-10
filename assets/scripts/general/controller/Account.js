@@ -1,4 +1,4 @@
-angular.module('caco.general.account.crtl', ['caco.Credentials'])
+angular.module('caco.general.crtl', ['caco.Credentials', 'caco.InstallWebApp'])
     .controller('AccountCrtl', function ($rootScope, $scope, $location, Credentials) {
         $scope.login = function () {
             Credentials.key.server = $scope.keyServer;

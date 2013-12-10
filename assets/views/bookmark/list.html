@@ -12,7 +12,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="bookmark in bookmarks | filter:searchText | paginate">
+        <tr class="fade-in-and-out"
+            ng-repeat="bookmark in bookmarks | filter:searchText | paginate">
             <td>
                 <img ng-src="icons/bookmark/{{bookmark.id}}.ico"
                      width="16px"
@@ -26,7 +27,7 @@
             </td>
             <td>
                 <span class="label label-default"
-                      ng-show="bookmark.date">
+                      ng-if="bookmark.date">
                     {{bookmark.date | unixTimeStamp | date:'yyyy-MM-dd HH:mm'}}
                 </span>
             </td>

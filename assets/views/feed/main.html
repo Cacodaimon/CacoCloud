@@ -12,25 +12,24 @@
                 <li ng-repeat="feed in feeds"
                     ng-class="{active: currentFeedId == feed.id}">
                     <a href="#/feed/show/{{feed.id}}">
-                        <img ng-show="!feed.outdated"
+                        <img ng-if="!feed.outdated"
                              ng-src="icons/feed/{{feed.id}}.ico"
                              width="16px"
                              height="16px" />
 
                         <span class="fa fa-spinner fa-spin"
-                              ng-show="feed.outdated"></span>
+                              ng-if="feed.outdated"></span>
 
-                        <span ng-bind-html-unsafe="feed.title"></span>
+                        <span ng-bind-html="feed.title"></span>
 
                         <span class="label label-success pull-right"
-                              ng-show="feed.unread > 0">{{feed.unread}}
+                              ng-if="feed.unread > 0">{{feed.unread}}
                         </span>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="col-lg-9 col-md-8"
-             ui-view
-             ng-animate="'fade'"></div>
+             ui-view></div>
     </div>
 </div>

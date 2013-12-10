@@ -22,7 +22,7 @@
         <legend>{{container.name}}</legend>
 
         <div class="form-group row"
-             ng-show="container.site">
+             ng-if="container.site">
             <label for="site"
                    class="col-lg-2 control-label">Site</label>
             <div class="col-lg-10">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group row"
-             ng-show="container.user">
+             ng-if="container.user">
             <label for="user"
                    class="col-lg-2 control-label">User</label>
             <div class="col-lg-10 input-group">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group row"
-             ng-show="container.email">
+             ng-if="container.email">
             <label for="email"
                    class="col-lg-2 control-label">E-Mail</label>
             <div class="col-lg-10 input-group">

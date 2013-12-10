@@ -12,23 +12,23 @@
             {{mail.unixTimeStamp | unixTimeStamp | date:'yyyy-MM-dd HH:mm'}}
         </div>
         <div class="panel-body"
-             ng-show="mail.bodyPlainText">
+             ng-if="mail.bodyPlainText">
             <pre>{{mail.bodyPlainText}}</pre>
         </div>
         <div class="panel-body"
-             ng-show="mail.bodyHtml"
-             ng-bind-html-unsafe="mail.bodyHtml">
+             ng-if="mail.bodyHtml"
+             ng-bind-html="mail.bodyHtml">
         </div>
         <div class="panel-footer"
-             ng-show="mail.flagged || mail.deleted || mail.seen || mail.recent">
+             ng-if="mail.flagged || mail.deleted || mail.seen || mail.recent">
             <span class="fa fa-flag"
-                  ng-show="mail.flagged"></span>
+                  ng-if="mail.flagged"></span>
             <span class="fa fa-trash-o"
-                  ng-show="mail.deleted"></span>
+                  ng-if="mail.deleted"></span>
             <span class="fa fa-eye"
-                  ng-show="mail.seen"></span>
+                  ng-if="mail.seen"></span>
             <span class="fa fa-fire"
-                  ng-show="mail.recent"></span>
+                  ng-if="mail.recent"></span>
         </div>
     </div>
 </div>

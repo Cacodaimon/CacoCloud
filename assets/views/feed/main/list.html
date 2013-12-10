@@ -14,7 +14,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in items | filter:searchText | orderBy:'date':true | paginate">
+            <tr class="fade-in-and-out"
+                ng-repeat="item in items | filter:searchText | orderBy:'date':true | paginate">
                 <td>
                     <img ng-src="icons/feed/{{item.id_feed}}.ico"
                          width="16px"
@@ -22,13 +23,13 @@
                 </td>
                 <td>
                     <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}"
-                       ng-bind-html-unsafe="item.title"
-                       ng-show="item.read"></a>
-                    <strong ng-show="!item.read">
+                       ng-bind-html="item.title"
+                       ng-if="item.read"></a>
+                    <strong ng-if="!item.read">
                         <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}"
-                           ng-bind-html-unsafe="item.title"></a>
+                           ng-bind-html="item.title"></a>
                     </strong>
-                    <span ng-show="item.author">
+                    <span ng-if="item.author">
                         <br />
                         <small>{{item.author}}</small>
                     </span>

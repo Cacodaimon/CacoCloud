@@ -18,11 +18,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="feed in feeds | filter:searchText">
+        <tr class="fade-in-and-out"
+            ng-repeat="feed in feeds | filter:searchText">
             <td>
-                <img ng-src="icons/feed/{{feed.id}}.ico"
-                     width="16px"
-                     height="16px" />
+                <img width="16px"
+                     height="16px"
+                     ng-src="icons/feed/{{feed.id}}.ico"/>
             </td>
             <td>
                 <a href="{{feed.url}}"

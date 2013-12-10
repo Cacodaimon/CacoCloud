@@ -1,4 +1,4 @@
-angular.module('caco', ['caco.Credentials', 'caco.filter', 'caco.general.welcome.crtl' ,'caco.general.account.crtl', 'caco.password', 'caco.bookmark', 'caco.feed', 'caco.mail', 'caco.ClientPaginate'])
+angular.module('caco', ['ngAnimate', 'ngSanitize', 'caco.Credentials', 'caco.filter', 'caco.general.crtl', 'caco.password', 'caco.bookmark', 'caco.feed', 'caco.mail', 'caco.ClientPaginate'])
     .config(function($stateProvider) {
         $stateProvider
             .state('general', {url: '',         templateUrl: 'views/general/welcome.html', controller: 'WelcomeCrtl'})

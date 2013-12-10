@@ -1,4 +1,4 @@
-angular.module('caco.general.welcome.crtl', ['caco.InstallWebApp'])
+angular.module('caco.general.crtl')
     .controller('WelcomeCrtl', function ($scope, $rootScope, WebApp) {
         if (WebApp.isWebAppDevice()) {
             WebApp.checkInstalled(function (installed) {

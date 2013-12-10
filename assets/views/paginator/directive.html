@@ -1,5 +1,5 @@
 <ul class="pagination text-center visible-md visible-lg"
-    ng-show="paginator.show()">
+    ng-if="paginator.show()">
     <li ng-click="paginator.firstPage()"
         ng-class="{disabled: paginator.isFirstPage()}">
         <a>
@@ -32,7 +32,7 @@
 </ul>
 
 <ul class="pager visible-xs visible-sm"
-    ng-show="paginator.show()">
+    ng-if="paginator.show()">
     <li class="previous"
         ng-class="{disabled: paginator.isFirstPage()}"
         ng-click="paginator.perviousPage()">
