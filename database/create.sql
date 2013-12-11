@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS bookmark (
     date INTEGER
 );
 
+INSERT INTO bookmark (name, url) VALUES ('Cacomania', 'http://cacodaemon.de/');
+
 CREATE TABLE IF NOT EXISTS feed (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
@@ -26,6 +28,8 @@ CREATE TABLE IF NOT EXISTS feed (
   updated INTEGER,
   interval INTEGER
 );
+
+INSERT INTO feed (title, url, updated, interval) VALUES ('Cacomania', 'http://cacodaemon.de/index.php?atom=1', 0, 86400);
 
 CREATE TABLE IF NOT EXISTS item (
   id INTEGER PRIMARY KEY,
