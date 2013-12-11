@@ -68,3 +68,5 @@ INSERT INTO config (key, value) VALUES ('auto-cleanup-max-item-count-enabled', '
 
 INSERT INTO config (key, value) VALUES ('update-interval-min', 600);
 INSERT INTO config (key, value) VALUES ('update-interval-max', 604800);
+
+INSERT INTO config (key, value) VALUES ('database-version', 1);
