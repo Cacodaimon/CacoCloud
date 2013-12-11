@@ -9,6 +9,7 @@ npm install grunt-contrib-uglify  --save-dev
 npm install grunt-contrib-cssmin  --save-dev
 npm install grunt-contrib-watch   --save-dev
 npm install grunt-contrib-htmlmin --save-dev
+npm install grunt-contrib-copy    --save-dev
 
 echo "Running grunt"
 grunt vendor

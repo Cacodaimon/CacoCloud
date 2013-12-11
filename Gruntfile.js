@@ -3,10 +3,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');    // npm install grunt-contrib-cssmin  --save-dev
     grunt.loadNpmTasks('grunt-contrib-watch');     // npm install grunt-contrib-watch   --save-dev
     grunt.loadNpmTasks('grunt-contrib-htmlmin');   // npm install grunt-contrib-htmlmin --save-dev
+    grunt.loadNpmTasks('grunt-contrib-copy');      // npm install grunt-contrib-copy    --save-dev
 
     grunt.registerTask('default', ['uglify:prod',  'htmlmin:prod',  'cssmin']);
     grunt.registerTask('debug',   ['uglify:debug', 'htmlmin:debug', 'cssmin:debug']);
-    grunt.registerTask('vendor',  ['uglify:vendor']);
+    grunt.registerTask('vendor',  ['uglify:vendor','copy:vendor']);
 
     var jsPaths = [
         'assets/scripts/paginator/module.js',
@@ -163,6 +164,18 @@ module.exports = function (grunt) {
             scripts: {
                 files: jsPaths,
                 tasks: ['debug']
+            }
+        },
+        copy: {
+            vendor: {
+                files: [
+                    {expand: true,
+                     flatten: true,
+                     src: 'assets/scripts/vendor-js/zxcvbn/zxcvbn.min.js',
+                     dest: 'public/scripts/vendor/zxcvbn',
+                     filter: 'isFile'
+                    }
+                ]
             }
         }
     });
