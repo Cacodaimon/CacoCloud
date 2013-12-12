@@ -25,9 +25,17 @@ angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
             }
 
             BookMarkREST.remove({id: id}, {}, function(data) {
-                BookMarkREST.all({}, function (data) {
-                    $scope.bookmarks = data.response;
-                });
+                if (data.status != 200) {
+                    return;
+                }
+
+                for (var i = $scope.bookmarks.length - 1; i >= 0; i--) {
+                    if ($scope.bookmarks[i].id != id) {
+                        continue;
+                    }
+
+                    $scope.bookmarks.splice(i, 1);
+                }
             });
         };
 
