@@ -363,11 +363,11 @@ class IMAP
             if ($html && $this->checkHtmlBody($structure)) {
                 $body = $this->decodeBody($structure, imap_fetchbody($this->ressource, $uniqueId, $partNumber, FT_UID));
 
-                return base64_encode($body);
+                return $body;
             } else if (!$html && $this->checkPlainTextBody($structure)) {
                 $body = $this->decodeBody($structure, imap_fetchbody($this->ressource, $uniqueId, $partNumber, FT_UID));
 
-                return base64_encode($body);
+                return $body;
             } else {
                 return false;
             }
@@ -447,6 +447,27 @@ class IMAP
     }
 
     /**
+     * Gets the body charset, if no charset was found false will be returned.
+     *
+     * @param \stdClass $structure
+     * @return string|bool
+     */
+    protected function getBodyCharset(\stdClass $structure)
+    {
+        if (!property_exists($structure, 'parameters')) {
+            return false;
+        }
+
+        foreach ($structure->parameters as $parameter) {
+            if (strtoupper($parameter->attribute) == 'CHARSET') {
+                return $parameter->value;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Decodes the body.
      *
      * @param \stdClass $structure
@@ -455,17 +476,16 @@ class IMAP
      */
     protected function decodeBody(\stdClass $structure, $body)
     {
+        $charset = $this->getBodyCharset($structure);
+
         switch ($structure->encoding) {
-            case 1:
-                return imap_8bit($body);
-            case 2:
-                return imap_base64(imap_binary($body));
             case 3:
-                return imap_base64($body);
+                $body = imap_base64($body);
+                break;
             case 4:
-                return imap_qprint($body);
+                $body = imap_qprint($body);
         }
 
-        return $body;
+        return $charset === false ? $body : mb_convert_encoding($body, 'UTF-8', $charset);
     }
 }

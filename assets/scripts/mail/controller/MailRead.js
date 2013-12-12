@@ -7,14 +7,6 @@ angular.module('caco.mail.crtl')
                 $rootScope.$broadcast('MailChanged', {id: $stateParams.id, mailBox: $stateParams.mailBox});
             }
 
-            if(mail.bodyHtml) {
-                mail.bodyHtml = window.atob(mail.bodyHtml);
-            }
-
-            if (mail.bodyPlainText) {
-                mail.bodyPlainText = window.atob(mail.bodyPlainText);
-            }
-
             $scope.mail = mail;
         });
     });
