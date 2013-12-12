@@ -28,6 +28,7 @@ angular.module('caco.ClientPaginate', [])
         this.page = 0;
         this.rowsPerPage = 50;
         this.itemCount = 0;
+        this.limitPerPage = 10;
 
         this.setPage = function (page) {
             if (page > this.pageCount()) {
@@ -79,6 +80,22 @@ angular.module('caco.ClientPaginate', [])
             }
 
             return count;
+        };
+
+        this.lowerLimit = function() {
+            var pageCountLimitPerPageDiff = this.pageCount() - this.limitPerPage;
+
+            if (pageCountLimitPerPageDiff < 0) {
+                return 0;
+            }
+
+            if (this.page > pageCountLimitPerPageDiff + 1) {
+                return pageCountLimitPerPageDiff;
+            }
+
+            var low = this.page - (Math.ceil(this.limitPerPage/2) - 1);
+
+            return Math.max(low, 0);
         };
 
         this.show = function () {

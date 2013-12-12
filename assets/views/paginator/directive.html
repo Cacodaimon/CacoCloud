@@ -13,8 +13,8 @@
         </a>
     </li>
     <li ng-click="paginator.setPage(i)"
-        ng-repeat="i in [] | forLoop:0:paginator.pageCount()"
-        ng-class="{active: paginator.page == i}">
+        ng-repeat="i in [] | forLoop:paginator.lowerLimit():paginator.pageCount() | limitTo : paginator.limitPerPage"
+        ng-class="paginator.page==i && 'active'">
         <a>{{i+1}}</a>
     </li>
     <li ng-click="paginator.nextPage()"
