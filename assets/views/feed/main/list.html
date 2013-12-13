@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="fade-in-and-out"
+            <tr class="fade-in fade-out"
                 ng-repeat="item in items | filter:searchText | orderBy:'date':true | paginate">
                 <td>
                     <img ng-src="icons/feed/{{item.id_feed}}.ico"

@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-    <tr class="fade-in-and-out"
+    <tr class="fade-in fade-out"
         ng-repeat="header in headers | orderBy:'unixTimeStamp':true">
         <td>
             <a href="#/mail/read/{{id}}/{{mailBoxBase64}}/{{header.uniqueId}}">
