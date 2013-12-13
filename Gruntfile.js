@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');      // npm install grunt-contrib-copy    --save-dev
 
     grunt.registerTask('default', ['uglify:prod',  'htmlmin:prod',  'cssmin']);
-    grunt.registerTask('debug',   ['uglify:debug', 'htmlmin:debug', 'cssmin:debug']);
+    grunt.registerTask('debug',   ['uglify:debug', 'htmlmin:debug', 'cssmin']);
     grunt.registerTask('vendor',  ['uglify:vendor','copy:vendor']);
 
     var jsPaths = [
