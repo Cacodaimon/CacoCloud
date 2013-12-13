@@ -3,14 +3,14 @@ angular.module('caco.feed.crtl')
         $rootScope.module = 'feed';
         $rootScope.modulePath = $location.path();
 
-        Feeds.get(function (feeds) {
-            $scope.feeds = feeds;
-        });
-
         if ($stateParams.id) {
             Feeds.getOne($stateParams.id, function (feed) {
                 $scope.feed = feed;
             })
+        } else {
+            Feeds.get(function (feeds) {
+                $scope.feeds = feeds;
+            });
         }
 
         $scope.lookup = function () {
