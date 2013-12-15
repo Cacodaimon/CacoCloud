@@ -5,6 +5,7 @@ angular.module('caco', ['ngAnimate', 'ngSanitize', 'caco.Credentials', 'caco.fil
             .state('welcome', {url: '/welcome', templateUrl: 'views/general/welcome.html', controller: 'WelcomeCrtl'})
             .state('login',   {url: '/login',   templateUrl: 'views/general/login.html',   controller: 'AccountCrtl'})
             .state('logout',  {url: '/logout',  templateUrl: 'views/general/logout.html',  controller: 'AccountCrtl'})
+            .state('about',   {url: '/about',   templateUrl: 'views/general/about.html'})
     })
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $location, $rootScope, Credentials) {

@@ -89,6 +89,7 @@ module.exports = function (grunt) {
         'public/views/general/login.html':               ['assets/views/general/login.html'],
         'public/views/general/logout.html':              ['assets/views/general/logout.html'],
         'public/views/general/welcome.html':             ['assets/views/general/welcome.html'],
+        'public/views/general/about.html':               ['assets/views/general/about.html'],
         'public/views/paginator/directive.html':         ['assets/views/paginator/directive.html'],
         'public/views/password/add.html':                ['assets/views/password/add.html'],
         'public/views/password/auth.html':               ['assets/views/password/auth.html'],
