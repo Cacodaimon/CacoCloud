@@ -17,4 +17,9 @@ if (!($cliClass instanceof Caco\CLI\ICLI)) {
 }
 
 $cliClass->init();
-exit($cliClass->run());
+
+try {
+    exit($cliClass->run());
+} catch (InvalidArgumentException $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
