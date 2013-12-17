@@ -22,22 +22,20 @@ class UserManagement extends AbstractCLI
      */
     public function run()
     {
-        $action = isset($this->options['a']) ? $this->options['a'] : $this->options['action'];
-
-        switch ($action) {
+        switch ($this->getArg('a', 'action', null, true)) {
             case 'create':
-                $name     = isset($this->options['u']) ? $this->options['u'] : $this->options['user'];
-                $password = isset($this->options['p']) ? $this->options['p'] : $this->options['password'];
+                $name     = $this->getArg('u', 'user', null, true);
+                $password = $this->getArg('p', 'password', null, true);
 
                 return $this->createUser($name, $password);
             case 'list':
                 return $this->listUsers();
             case 'delete':
-                $id     = isset($this->options['i']) ? $this->options['i'] : $this->options['id'];
+                $id = $this->getArg('i', 'id', null, true);
 
                 return $this->deleteUser($id);
             default:
-                $this->printLine("Invalid action: $action given!");
+                $this->printLine('Invalid -a/--action given, valid actions are create, delete or list!');
         }
     }
 
@@ -94,7 +92,7 @@ class UserManagement extends AbstractCLI
      */
     protected function createUser($name, $password)
     {
-        $user = new User;
+        $user           = new User;
         $user->userName = $name;
         $user->setPassword($password);
 
