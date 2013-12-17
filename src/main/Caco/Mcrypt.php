@@ -14,7 +14,6 @@ class Mcrypt
      * @var array
      */
     protected static $validCiphers = [
-        MCRYPT_BLOWFISH,
         MCRYPT_TWOFISH,
         MCRYPT_RIJNDAEL_128,
         MCRYPT_RIJNDAEL_192,
@@ -148,6 +147,16 @@ class Mcrypt
         }
 
         $this->cipher = $cipher;
+    }
+
+    /**
+     * Gets the current default cipher.
+     *
+     * @return string
+     */
+    public function getCipher()
+    {
+        return $this->cipher;
     }
 
     /**
