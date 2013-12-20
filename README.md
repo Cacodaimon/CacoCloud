@@ -5,7 +5,7 @@ CacoCloud is divided into a RESTful PHP backend storing all data into a [SQLite]
 
 I have mainly written CacoCloud to fit my personal needs, but maybe it fits your needs, too.
 
-You can finde some screenshots in the [wiki](https://github.com/Cacodaimon/CacoCloud/wiki/Screenshots).
+You can find some screenshots in the [wiki](https://github.com/Cacodaimon/CacoCloud/wiki/Screenshots).
 
 
 ## Installation
