@@ -118,11 +118,6 @@ class REST implements ISlimApp
      */
     public function mailBoxes($key, $id)
     {
-        /*if (apc_exists("account-$id")) {
-            $this->app->render(200, ['response' => apc_fetch("account-$id")]);
-            return;
-        }*/
-
         if (!$account = $this->mcryptAccount->one($key, $id)) {
             $this->app->render(404);
 
@@ -136,8 +131,6 @@ class REST implements ISlimApp
             'name'      => $account->getName(),
             'mailBoxes' => $this->imapFacade->listMailBoxesWithStatus(),
         ];
-
-        //apc_add("account-$id", $response, 600);
 
         $this->app->render(200, ['response' => $response]);
     }
