@@ -19,8 +19,7 @@
              ng-if="mail.bodyHtml"
              ng-bind-html="mail.bodyHtml">
         </div>
-        <div class="panel-footer"
-             ng-if="mail.flagged || mail.deleted || mail.seen || mail.recent">
+        <div class="panel-footer">
 
             <a class="btn btn-success btn-sm"
                href="#/mail/reply/{{id}}/{{mailBoxBase64}}/{{mail.uniqueId}}">
