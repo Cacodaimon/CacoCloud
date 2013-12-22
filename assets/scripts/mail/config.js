@@ -5,6 +5,7 @@ angular.module('caco.mail', ['ui.router', 'caco.mail.crtl', 'caco.filter.base64'
             .state('mail.overview',         {url: '/mail',                                   templateUrl: 'views/mail/main/list.html'                                 })
             .state('mail.list',             {url: '/mail/list/:id/:mailBoxBase64',           templateUrl: 'views/mail/main/list.html',    controller: 'MailListCrtl'  })
             .state('mail.read',             {url: '/mail/read/:id/:mailBoxBase64/:uniqueId', templateUrl: 'views/mail/main/read.html',    controller: 'MailReadCrtl'  })
+            .state('mail-reply',            {url: '/mail/reply/:id/:mailBoxBase64/:uniqueId',templateUrl: 'views/mail/send.html',         controller: 'MailReplyCrtl' })
             .state('mail-send',             {url: '/mail/send',                              templateUrl: 'views/mail/send.html',         controller: 'MailSendCrtl'  })
             .state('mail-auth',             {url: '/mail/auth',                              templateUrl: 'views/mail/auth.html',         controller: 'MailAuthCrtl'  })
             .state('mail-manage',           {                                                templateUrl: 'views/mail/manage.html'                                    })

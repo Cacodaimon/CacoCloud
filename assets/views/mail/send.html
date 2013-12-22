@@ -13,9 +13,10 @@
                         <select id="mail-from"
                                 class="form-control"
                                 required="required"
-                                ng-model="mail.fromId">
-                            <option ng-repeat="account in accounts"
-                                    value="{{account.id}}">{{account.name}}</option>
+                                ng-model="mail.fromId"
+                                ng-options="account.id as account.name  for account in accounts">
+                            <option value="">Please select</option>
+
                         </select>
                     </div>
 

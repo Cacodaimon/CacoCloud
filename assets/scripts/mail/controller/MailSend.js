@@ -8,6 +8,7 @@ angular.module('caco.mail.crtl')
 
         MailAccountREST.all({}, function (data) {
             $scope.accounts = data.response;
+            console.log($scope.accounts);
         });
 
         $scope.send = function () {

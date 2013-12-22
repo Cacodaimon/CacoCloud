@@ -34,6 +34,11 @@
         </td>
         <td width="100px">
             <div class="btn-group pull-right" >
+                <a type="button"
+                   class="btn btn-success btn-sm"
+                   href="#/mail/reply/{{id}}/{{mailBoxBase64}}/{{header.uniqueId}}">
+                    <span class="fa fa-reply"></span>
+                </a>
                 <button type="button"
                         class="btn btn-danger btn-sm"
                         ng-click="delete(id, mailBoxBase64, header.uniqueId)">

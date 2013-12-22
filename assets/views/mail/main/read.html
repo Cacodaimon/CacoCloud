@@ -21,6 +21,12 @@
         </div>
         <div class="panel-footer"
              ng-if="mail.flagged || mail.deleted || mail.seen || mail.recent">
+
+            <a class="btn btn-success btn-sm"
+               href="#/mail/reply/{{id}}/{{mailBoxBase64}}/{{mail.uniqueId}}">
+                <span class="fa fa-reply"></span> Reply
+            </a>
+
             <span class="fa fa-flag"
                   ng-if="mail.flagged"></span>
             <span class="fa fa-trash-o"

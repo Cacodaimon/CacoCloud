@@ -42,6 +42,7 @@ module.exports = function (grunt) {
         'assets/scripts/mail/controller/MailList.js',
         'assets/scripts/mail/controller/MailManage.js',
         'assets/scripts/mail/controller/MailRead.js',
+        'assets/scripts/mail/controller/MailReply.js',
         'assets/scripts/mail/controller/MailSend.js',
         'assets/scripts/mail/config.js',
         'assets/scripts/general/filter/UnixTimeStamp.js',
