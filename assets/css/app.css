@@ -39,3 +39,19 @@ body {
 .fade-out.ng-enter.ng-enter-active {
     opacity:1;
 }
+
+.alert-slider.ng-enter,
+.alert-slider.ng-leave {
+    -webkit-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+}
+
+.alert-slider.ng-enter,
+.alert-slider.ng-leave.ng-leave-active {
+    max-height: 0px;
+}
+.alert-slider.ng-leave,
+.alert-slider.ng-enter.ng-enter-active {
+    overflow-y: hidden;
+    max-height: 250px;
+}

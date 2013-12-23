@@ -1,5 +1,5 @@
 angular.module('caco.mail.crtl')
-    .controller('MailReplyCrtl', function ($rootScope, $scope, $stateParams, $location, MailAccountREST, MailREST, SendMailREST, Credentials) {
+    .controller('MailReplyCrtl', function ($rootScope, $scope, $stateParams, $location, MailAccountREST, MailREST, SendMailREST, Credentials, Alerts) {
         if (Credentials.emptyEmailKey()) {
             $location.path('/mail/auth');
         }
@@ -8,7 +8,8 @@ angular.module('caco.mail.crtl')
 
         MailAccountREST.one({id: $stateParams.id}, function (data) {
             $scope.accounts = [data.response];
-
+        }, function () {
+            Alerts.addDanger('Could not find a account for sending the E-Mail!');
         });
 
         MailREST.one($stateParams, function (data) {
@@ -35,8 +36,10 @@ angular.module('caco.mail.crtl')
 
         $scope.send = function () {
             SendMailREST.send({id: $scope.mail.fromId}, $scope.mail, function () {
-                alert('Mail has been send!');
+                Alerts.addSuccess('The E-Mail has been send!');
                 $location.path('/mail');
+            }, function () {
+                Alerts.addDanger('Could not send the mail!');
             });
         };
     });

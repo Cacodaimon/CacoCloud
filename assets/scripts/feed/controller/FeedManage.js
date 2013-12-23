@@ -1,5 +1,5 @@
 angular.module('caco.feed.crtl')
-    .controller('FeedManageCrtl', function ($rootScope, $scope, $stateParams, $location, Feeds, FeedREST, FeedUrlLookupREST) {
+    .controller('FeedManageCrtl', function ($rootScope, $scope, $stateParams, $location, Feeds, FeedREST, FeedUrlLookupREST, Alerts) {
         $rootScope.module = 'feed';
         $rootScope.modulePath = $location.path();
 
@@ -18,6 +18,8 @@ angular.module('caco.feed.crtl')
                 if (data && data.responseStatus == 200) {
                     $scope.feed = data.responseData;
                 }
+            }, function () {
+                Alerts.addDanger('No feed found!');
             });
         };
 
@@ -26,6 +28,8 @@ angular.module('caco.feed.crtl')
             Feeds.add($scope.feed, function (feeds) {
                 $scope.feeds = feeds;
                 $location.path('/feed/manage');
+            }, function () {
+                Alerts.addDanger('Feed has not been added!');
             });
         };
 
@@ -33,6 +37,8 @@ angular.module('caco.feed.crtl')
             Feeds.edit($scope.feed, function (feeds) {
                 $scope.feeds = feeds;
                 $location.path('/feed/manage');
+            }, function () {
+                Alerts.addDanger('Feed has not been edited!');
             });
         };
 
@@ -44,6 +50,8 @@ angular.module('caco.feed.crtl')
             Feeds.remove({id: id}, function (feeds) {
                 $scope.feeds = feeds;
                 $location.path('/feed/manage');
+            }, function () {
+                Alerts.addDanger('Feed has not been deleted!');
             });
         };
     });

@@ -1,0 +1,6 @@
+<div class="alert alert-dismissable alert-{{alert.type}} alert-slider"
+     ng-repeat="alert in alerts"
+     ng-click="remove(alert.id)">
+    <strong>{{alert.title}}</strong>
+    <span ng-if="alert.message">{{alert.message}}</span>
+</div>

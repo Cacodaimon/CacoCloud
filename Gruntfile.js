@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 
     var jsPaths = [
         'assets/scripts/paginator/module.js',
+        'assets/scripts/alerts/module.js',
         'assets/scripts/general/service/InstallWebApp.js',
         'assets/scripts/general/service/TemporaryStorage.js',
         'assets/scripts/general/service/Credentials.js',
@@ -92,6 +93,7 @@ module.exports = function (grunt) {
         'public/views/general/welcome.html':             ['assets/views/general/welcome.html'],
         'public/views/general/about.html':               ['assets/views/general/about.html'],
         'public/views/paginator/directive.html':         ['assets/views/paginator/directive.html'],
+        'public/views/alerts/directive.html':            ['assets/views/alerts/directive.html'],
         'public/views/password/add.html':                ['assets/views/password/add.html'],
         'public/views/password/auth.html':               ['assets/views/password/auth.html'],
         'public/views/password/edit.html':               ['assets/views/password/edit.html'],

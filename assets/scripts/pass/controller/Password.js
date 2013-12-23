@@ -1,5 +1,5 @@
 angular.module('caco.password.crtl', ['caco.password.REST'])
-    .controller('PasswordCrtl', function ($rootScope, $scope, $stateParams, $location, $http, PasswordREST, Credentials) {
+    .controller('PasswordCrtl', function ($rootScope, $scope, $stateParams, $location, $http, PasswordREST, Credentials, Alerts) {
         $rootScope.module = 'password';
 
         if (Credentials.emptyServerKey()) {
@@ -50,6 +50,8 @@ angular.module('caco.password.crtl', ['caco.password.REST'])
 
             PasswordREST.add({}, container, function () {
                 $location.path('/password');
+            }, function () {
+                Alerts.addDanger('Password has not been added!');
             });
         };
 
@@ -60,6 +62,8 @@ angular.module('caco.password.crtl', ['caco.password.REST'])
 
             PasswordREST.edit({id: container.id}, container, function () {
                 $location.path('/password');
+            }, function () {
+                Alerts.addDanger('Password has not been edited!');
             });
         };
 
@@ -80,6 +84,8 @@ angular.module('caco.password.crtl', ['caco.password.REST'])
 
                     $scope.passwords.splice(i, 1);
                 }
+            }, function () {
+                Alerts.addDanger('Password has not been deleted!');
             });
         };
 

@@ -1,5 +1,5 @@
 angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
-    .controller('BookMarkCrtl', function ($rootScope, $scope, $stateParams, $location, BookMarkREST) {
+    .controller('BookMarkCrtl', function ($rootScope, $scope, $stateParams, $location, BookMarkREST, Alerts) {
         $rootScope.module = 'bookmark';
 
         if ($stateParams.id) {
@@ -16,6 +16,8 @@ angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
         $scope.add = function () {
             BookMarkREST.add({}, $scope.newBookmark, function () {
                 $location.path('/bookmark');
+            }, function () {
+                Alerts.addDanger('Could not add the Bookmark!');
             });
         };
 
@@ -36,12 +38,16 @@ angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
 
                     $scope.bookmarks.splice(i, 1);
                 }
+            }, function () {
+                Alerts.addDanger('Could not delete the Bookmark!');
             });
         };
 
         $scope.edit = function () {
             BookMarkREST.edit({id: $scope.bookmark.id}, $scope.bookmark, function (data) {
                 $location.path('/bookmark');
+            }, function () {
+                Alerts.addDanger('Could not edit the bookmark!');
             });
         };
     });

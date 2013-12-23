@@ -1,5 +1,5 @@
 angular.module('caco.mail.crtl')
-    .controller('MailManageCrtl', function ($rootScope, $scope, $stateParams, $location, MailAccountREST, Credentials) {
+    .controller('MailManageCrtl', function ($rootScope, $scope, $stateParams, $location, MailAccountREST, Credentials, Alerts) {
         if (Credentials.emptyEmailKey()) {
             $location.path('/mail/auth');
         }
@@ -22,6 +22,8 @@ angular.module('caco.mail.crtl')
         $scope.add = function () {
             MailAccountREST.add({}, $scope.newAccount, function () {
                 $location.path('/mail/manage');
+            }, function () {
+                Alerts.addDanger('Could not add the E-Mail account!');
             });
         };
 
@@ -31,6 +33,8 @@ angular.module('caco.mail.crtl')
                     $scope.accounts = data.response;
                 });
                 $location.path('/mail/manage');
+            }, function () {
+                Alerts.addDanger('Could not edit the E-Mail account!');
             });
         };
 
@@ -43,6 +47,8 @@ angular.module('caco.mail.crtl')
                 MailAccountREST.all({}, function (data) {
                     $scope.accounts = data.response;
                 });
+            }, function () {
+                Alerts.addDanger('Could not delete the E-Mail account!');
             });
         };
     });
