@@ -61,7 +61,8 @@ class REST implements \Caco\Slim\ISlimApp
     {
         $config = new Config;
         if ($config->readKey($key)) {
-            $this->app->render($config->delete() ? 200 : 500, ['response' => $key]);
+            $id = $config->id;
+            $this->app->render($config->delete() ? 200 : 500, ['response' => $id]);
         } else {
             $this->app->render(404);
         }
