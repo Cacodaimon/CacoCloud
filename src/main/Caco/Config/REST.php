@@ -51,7 +51,7 @@ class REST implements \Caco\Slim\ISlimApp
         $config->setArray(json_decode($this->app->request()->getBody(), true));
 
         if ($config->save()) {
-            $this->app->render(201, ['response' => $config->id]);
+            $this->app->render(200, ['response' => $config->id]);
         } else {
             $this->app->render(500);
         }
