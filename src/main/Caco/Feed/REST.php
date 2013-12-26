@@ -180,7 +180,6 @@ class REST implements ISlimApp
      */
     public function calculateUpdateInterval()
     {
-        sleep(3);
         $this->app->render(200, ['response' => $this->manager->calculateUpdateInterval()]);
     }
 
