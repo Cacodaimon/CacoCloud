@@ -2,6 +2,7 @@
 namespace Caco\Feed\Model;
 
 use \Caco\MiniAR;
+use \Caco\MiniARException;
 
 /**
  * Class Feed
@@ -69,10 +70,15 @@ class Feed extends MiniAR
                             LIMIT 1;');
 
         $sth   = $this->pdo->prepare($query);
+
+        if ($this->pdo->errorCode() != '00000') {
+            throw new MiniARException($this->pdo->errorInfo()[0], $this->pdo->errorCode());
+        }
+
         $sth->execute([time(), $id]);
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-        if (empty($result)) {
+        if (empty($result) || is_null($result[0]['id'])) {
             return false;
         }
 
