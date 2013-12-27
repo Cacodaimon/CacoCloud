@@ -191,7 +191,7 @@ class REST implements ISlimApp
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->CharSet = 'utf-8';
-        $mail->setFrom($smtpAccount->userName, $smtpAccount->realName);
+        $mail->setFrom($smtpAccount->email, $smtpAccount->realName);
         $mail->Host     = $smtpAccount->host;
         $mail->Port     = $smtpAccount->port;
         $mail->SMTPAuth = $smtpAccount->auth;

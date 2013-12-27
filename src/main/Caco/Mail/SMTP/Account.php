@@ -55,6 +55,11 @@ class Account implements \JsonSerializable
     /**
      * @var string
      */
+    public $email = '';
+
+    /**
+     * @var string
+     */
     public $password = '';
 
     /**
@@ -86,6 +91,7 @@ class Account implements \JsonSerializable
             'authType' => $this->authType,
             'realName' => $this->realName,
             'userName' => $this->userName,
+            'email'    => $this->email,
             'secure'   => $this->secure,
         ];
     }
