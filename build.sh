@@ -1,45 +1,36 @@
 #!/bin/bash
+. ./tools.sh
 
 #
 # Easy initial build script.
 #
 
-function grunt_module_install () {
-  MODULE_NAME="$1"
+echo_blue "Install grunt modules"
+npm_module_install grunt-contrib-uglify
+npm_module_install grunt-contrib-cssmin
+npm_module_install grunt-contrib-watch
+npm_module_install grunt-contrib-htmlmin
+npm_module_install grunt-contrib-copy
 
-  if [ -d "node_modules/$MODULE_NAME" ]; then
-    echo "Module $MODULE_NAME is already installed, skipping..."
-  else
-    npm install "$MODULE_NAME"  --save-dev
-  fi
-}
-
-echo "Install grunt modules"
-grunt_module_install grunt-contrib-uglify
-grunt_module_install grunt-contrib-cssmin
-grunt_module_install grunt-contrib-watch
-grunt_module_install grunt-contrib-htmlmin
-grunt_module_install grunt-contrib-copy
-
-echo "Running grunt"
+echo_blue "Running grunt"
 grunt vendor
 grunt
 
 if [ ! -f composer.phar ]; then
-  echo "Installing composer"
+  echo_blue "Installing composer"
   curl -sS https://getcomposer.org/installer | php
 fi
 
-echo "Running composer"
+echo_blue "Running composer"
 php composer.phar update
 
 if [ -f database/app.sqlite3 ]; then
-  echo "Skipped creating the database..."
+  echo_yellow "Skipped creating the database..."
 else
-  echo "Creating SQLite database"
+  echo_blue "Creating SQLite database"
   cat database/create.sql | sqlite3 database/app.sqlite3
 
-  echo "Create a new user"
+  echo_blue "Create a new user"
   echo -n "User name: "
   read -r USER_NAME
   echo -n "Password: "
@@ -48,3 +39,5 @@ else
 fi
 
 php cli/run_cli.php --cli=Caco\\Slim\\Auth\\UserManagement -a list
+
+./run_tests.sh
