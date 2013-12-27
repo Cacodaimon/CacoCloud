@@ -31,11 +31,19 @@ class UserManagement extends AbstractCLI
             case 'list':
                 return $this->listUsers();
             case 'delete':
-                $id = $this->getArg('i', 'id', null, true);
+                $id   = $this->getArg('i', 'id', null);
+                $name = $this->getArg('u', 'user', null);
 
-                return $this->deleteUser($id);
+                if (!is_null($id)) {
+                    return $this->deleteUser($id);
+                } else if (!is_null($name)) {
+                    return $this->deleteUserByName($name);
+                } else {
+                    throw new \InvalidArgumentException('Either an id (-i/--id) or a name (-u/--user) has to be specified!');
+                }
+
             default:
-                $this->printLine('Invalid -a/--action given, valid actions are create, delete or list!');
+                $this->printLine('Invalid action (-a/--action) given, valid actions are create, delete or list!');
         }
     }
 
@@ -55,7 +63,27 @@ class UserManagement extends AbstractCLI
     }
 
     /**
-     * Deletes the given user.
+     * Deletes the given user specified by its name
+     *
+     * @param string $name
+     * @return int
+     */
+    protected function deleteUserByName($name)
+    {
+        /** @var User[] $users */
+        $users = (new User)->readList('`userName` = ?', [$name]);
+
+        if (empty($users)) {
+            $this->printLine("No user with the given name: $name found!");
+
+            return 255;
+        }
+
+        return $this->deleteUser($users[0]->id);
+    }
+
+    /**
+     * Deletes the given user specified by its id.
      *
      * @param int $id
      * @return int
