@@ -26,6 +26,8 @@ class AccountMcrypt
     }
 
     /**
+     * Get the account specified by its id and matching the given key.
+     *
      * @param string $key
      * @param int $id
      * @return bool|Account
@@ -51,6 +53,8 @@ class AccountMcrypt
     }
 
     /**
+     * Get all mail account matching the key.
+     *
      * @param string $key
      * @return Account[]
      */
@@ -78,6 +82,8 @@ class AccountMcrypt
     }
 
     /**
+     * Creates a new mail account, returns the id on success or false if a error occurred.
+     *
      * @param string $key
      * @param Account $account
      * @return int|bool
@@ -91,6 +97,8 @@ class AccountMcrypt
     }
 
     /**
+     * Edit the mail account specified by its id and matches the given key.
+     *
      * @param string $key
      * @param int $id
      * @param Account $account
@@ -110,6 +118,8 @@ class AccountMcrypt
     }
 
     /**
+     * Deletes the mail account specified by its id and matches the given key.
+     *
      * @param string $key
      * @param int $id
      * @return bool
@@ -123,6 +133,6 @@ class AccountMcrypt
         $mailAccount = new MailAccount;
         $mailAccount->read($id);
 
-        $mailAccount->delete();
+        return $mailAccount->delete();
     }
 }
