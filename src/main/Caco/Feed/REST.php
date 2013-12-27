@@ -42,7 +42,11 @@ class REST implements ISlimApp
         $data = json_decode($this->app->request()->getBody(), true);
         $feed = $this->manager->addFeed($data['url']);
 
-        $this->app->render($feed ? 201 : 500, ['response' => $feed]);
+        if ($feed) {
+            $this->app->render(201, ['response' => $feed->id]);
+        } else {
+            $this->app->render(500);
+        }
     }
 
     /**
@@ -75,7 +79,7 @@ class REST implements ISlimApp
      */
     public function deleteFeed($id)
     {
-        $this->app->render($this->manager->deleteFeed($id) ? 200 : 500, ['response' => $id]);
+        $this->app->render($this->manager->deleteFeed($id) ? 200 : 404, ['response' => $id]);
     }
 
     /**
@@ -89,9 +93,9 @@ class REST implements ISlimApp
         if ($feed->read($id)) {
             $feed->setArray(json_decode($this->app->request()->getBody(), true));
 
-            $this->app->render($feed->save() ? 200 : 500, ['response' => $feed]);
+            $this->app->render($feed->save() ? 200 : 500, ['response' => $feed->id]);
         } else {
-            $this->app->render(404, ['response' => $id]);
+            $this->app->render(404);
         }
     }
 
