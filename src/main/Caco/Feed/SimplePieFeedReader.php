@@ -37,7 +37,6 @@ class SimplePieFeedReader implements IFeedReader
     public function setFeed($url)
     {
         $this->simplePie->set_feed_url($this->url = $url);
-        $this->simplePie->handle_content_type();
         $this->simplePie->init();
     }
 
