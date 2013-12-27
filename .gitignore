@@ -25,3 +25,9 @@ public/views/*
 
 # PHPStrom files
 .idea
+
+# frisbyjs files
+reports/
+
+# OS files
+nohup.out
