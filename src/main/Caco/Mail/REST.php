@@ -89,7 +89,7 @@ class REST implements ISlimApp
         $account->setArray(json_decode($this->app->request()->getBody(), true));
 
         if ($this->mcryptAccount->edit($key, $id, $account)) {
-            $this->app->render(201);
+            $this->app->render(200, ['response' => $id]);
         } else {
             $this->app->render(404);
         }
@@ -104,7 +104,7 @@ class REST implements ISlimApp
     public function deleteAccount($key, $id)
     {
         if ($this->mcryptAccount->delete($key, $id)) {
-            $this->app->render(200);
+            $this->app->render(200, ['response' => $id]);
         } else {
             $this->app->render(404);
         }
