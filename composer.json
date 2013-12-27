@@ -9,5 +9,11 @@
     },
     "autoload" : {
         "classmap" : ["src/main"]
-    }
+    },
+    "authors": [
+        {
+            "name": "Guido Krömer",
+            "email": "mail@cacodaemon.de"
+        }
+    ]
 }
