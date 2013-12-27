@@ -70,8 +70,8 @@ class REST implements ISlimApp
         $account = new Account('', new IMAPAccount, new SMTPAccount);
         $account->setArray(json_decode($this->app->request()->getBody(), true));
 
-        if ($this->mcryptAccount->add($key, $account)) {
-            $this->app->render(201);
+        if ($id = $this->mcryptAccount->add($key, $account)) {
+            $this->app->render(201, ['response' => $id]);
         } else {
             $this->app->render(500);
         }

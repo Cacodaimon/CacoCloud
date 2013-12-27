@@ -80,16 +80,14 @@ class AccountMcrypt
     /**
      * @param string $key
      * @param Account $account
-     * @return bool
+     * @return int|bool
      */
     public function add($key, Account $account)
     {
-        echo serialize($account);
-
         $mailAccount = new MailAccount;
         $mailAccount->setContainer($this->crypto->encrypt(serialize($account), $key));
 
-        return $mailAccount->save();
+        return $mailAccount->save() ? $mailAccount->id : false;
     }
 
     /**
