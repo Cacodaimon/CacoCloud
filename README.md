@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/Cacodaimon/CacoCloud.png?label=ready)](http://waffle.io/Cacodaimon/CacoCloud)
+
 # CacoCloud
 
 A simple, fast and secure PHP/AngularJS based single user feed and mail reader, password and bookmark manager.
@@ -6,7 +8,6 @@ CacoCloud is divided into a RESTful PHP backend storing all data into a [SQLite]
 I have mainly written CacoCloud to fit my personal needs, but maybe it fits your needs, too.
 
 You can find some screenshots in the [wiki](https://github.com/Cacodaimon/CacoCloud/wiki/Screenshots).
-
 
 ## Installation
 
