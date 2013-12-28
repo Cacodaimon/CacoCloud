@@ -1,5 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/Cacodaimon/CacoCloud.png?label=ready)](http://waffle.io/Cacodaimon/CacoCloud)
-
 # CacoCloud
 
 A simple, fast and secure PHP/AngularJS based single user feed and mail reader, password and bookmark manager.
@@ -28,4 +26,6 @@ Since CacoCloud is an SPA, the frontend is build with love, [AngularJs](http://a
 Thanks to [Bootstrap 3.0](http://getbootstrap.com/) the frontend is clean and responsible and a nice theme from [Bootswatch](http://bootswatch.com/) lets it not looks so Bootstrapped. The icons are by [Font Awesome](http://fontawesome.io/).
 
 At last all frontend code gets minified with the use of [Grunt](http://gruntjs.com/). 
+
+[![Stories in Ready](https://badge.waffle.io/Cacodaimon/CacoCloud.png?label=ready)](http://waffle.io/Cacodaimon/CacoCloud)
 
