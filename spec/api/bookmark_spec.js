@@ -85,6 +85,50 @@ frisby.create('API: Add a new bookmark')
     })
     .toss();
 
+frisby.create('API: Add a new bookmark with created date.')
+    .post(url, {
+        url: 'http://www.example.de',
+        name: 'Example De',
+        date: 1240596879
+    }, {json: true})
+    .expectHeaderContains('content-type', 'application/json')
+    .expectStatus(201)
+    .expectJSONTypes({
+        status: Number,
+        response: Number
+    })
+    .afterJSON(function (api) {
+        var id = api.response;
+
+        frisby.create('API: Get the newly added bookmark with created date')
+            .get(url + '/' + id)
+            .expectHeaderContains('content-type', 'application/json')
+            .expectStatus(200)
+            .expectJSON({
+                status: 200,
+                response: {
+                    url: 'http://www.example.de',
+                    name: 'Example De',
+                    date: 1240596879,
+                    id: id
+                }
+            })
+            .afterJSON(function (api) {
+
+                frisby.create('API: Delete the newly add bookmark with created date')
+                    .delete(url + '/' + id)
+                    .expectHeaderContains('content-type', 'application/json')
+                    .expectStatus(200)
+                    .expectJSONTypes({
+                        status: Number,
+                        response: Number
+                    })
+                    .toss();
+            })
+            .toss();
+    })
+    .toss();
+
 frisby.create('API: Get a non existing bookmark')
     .delete(url + '/' + 1234567890)
     .expectHeaderContains('content-type', 'application/json')
