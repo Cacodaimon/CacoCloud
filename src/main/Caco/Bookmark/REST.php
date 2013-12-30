@@ -48,7 +48,7 @@ class REST extends \Caco\Slim\REST
         $bookmark       = new Bookmark;
         $bookmark->name = $this->getTitleFromUrl($data['url'], isset($data['name']) ? $data['name'] : '');
         $bookmark->url  = $data['url'];
-        $bookmark->date = time();
+        $bookmark->date = isset($data['date']) && is_numeric($data['date']) ? intval($data['date']) : time();
 
         if ($bookmark->save()) {
             $this->saveFavicon($bookmark->url, $bookmark->id);
