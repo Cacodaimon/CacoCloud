@@ -256,7 +256,6 @@ class IMAP
     protected function mailHeaderFromImapOverview(\stdClass $overview)
     {
         $mailHeader                = new MailHeader;
-        $mailHeader->date          = $overview->date;
         $mailHeader->unixTimeStamp = $overview->udate;
         $mailHeader->size          = $overview->size;
         $mailHeader->uniqueId      = $overview->uid;
@@ -268,14 +267,20 @@ class IMAP
         $mailHeader->seen          = $overview->seen ? true : false;
         $mailHeader->draft         = $overview->draft ? true : false;
 
+        if (property_exists($overview, 'date')) {
+            $mailHeader->date = $overview->date;
+        } else {
+            $mailHeader->date = date('r', $overview->udate);
+        }
+
         if (property_exists($overview, 'subject')) {
-            $mailHeader->subject = imap_utf8($overview->subject);
+            $mailHeader->subject = utf8_encode(imap_utf8($overview->subject));
         }
         if (property_exists($overview, 'from')) {
-            $mailHeader->from = imap_utf8($overview->from);
+            $mailHeader->from = utf8_encode(imap_utf8($overview->subject));
         }
         if (property_exists($overview, 'to')) {
-            $mailHeader->to = imap_utf8($overview->to);
+            $mailHeader->to = utf8_encode(imap_utf8($overview->subject));
         }
         if (property_exists($overview, 'in_reply_to')) {
             $mailHeader->inReplyToMessageId = trim($overview->in_reply_to);
@@ -296,7 +301,6 @@ class IMAP
     protected function mailFromImapHeader(\stdClass $imapHeader)
     {
         $mail                = new Mail;
-        $mail->date          = $imapHeader->date;
         $mail->subject       = imap_utf8($imapHeader->subject);
         $mail->to            = imap_utf8($imapHeader->toaddress);
         $mail->from          = imap_utf8($imapHeader->fromaddress);
@@ -304,11 +308,16 @@ class IMAP
         $mail->messageNumber = intval($imapHeader->Msgno);
         $mail->uniqueId      = imap_uid($this->ressource, $mail->messageNumber);
         $mail->unixTimeStamp = $imapHeader->udate;
-        $mail->date          = $imapHeader->date;
         $mail->flagged       = $imapHeader->Flagged == ' ' ? false : true;
         $mail->answered      = $imapHeader->Answered == ' ' ? false : true;
         $mail->deleted       = $imapHeader->Deleted == ' ' ? false : true;
         $mail->draft         = $imapHeader->Draft == ' ' ? false : true;
+
+        if (property_exists($imapHeader, 'date')) {
+            $mail->date = $imapHeader->date;
+        } else {
+            $mail->date = '';
+        }
 
         if (property_exists($imapHeader, 'message_id')) {
             $mail->messageId = trim($imapHeader->message_id);
@@ -328,7 +337,6 @@ class IMAP
         } else if ($imapHeader->Recent == 'N') {
             $mail->recent = true;
         }
-
 
         if ($imapHeader->Unseen == 'U') {
             $mail->recent = false;
