@@ -17,9 +17,11 @@
             <tr class="fade-in fade-out"
                 ng-repeat="item in items | filter:searchText | orderBy:'date':true | paginate">
                 <td>
-                    <img ng-src="icons/feed/{{item.id_feed}}.ico"
-                         width="16px"
-                         height="16px" />
+                    <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}">
+                        <img ng-src="icons/feed/{{item.id_feed}}.ico"
+                             width="16px"
+                             height="16px" />
+                    </a>
                 </td>
                 <td>
                     <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}"
