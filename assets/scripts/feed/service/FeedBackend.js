@@ -76,6 +76,7 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
 
         this.decRead = function (id) {
             if (!TempStorage.contains('feeds')) {
+                $rootScope.$broadcast('FeedsUpdated');
                 return;
             }
 
