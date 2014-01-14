@@ -61,13 +61,13 @@
 	
 		a:hover
 		{
-			color: #ed786a;
+			color: #46BDE8;
 			border-bottom-color: rgba(255,255,255,0);
 		}
 		
 		a:hover strong
 		{
-			color: #ed786a;
+			color: #46BDE8;
 		}
 
 	strong, b
@@ -446,7 +446,7 @@
 		{
 			position: relative;
 			display: inline-block;
-			background: #ed786a;
+			background: #46BDE8;
 			color: #fff !important;
 			text-transform: uppercase;
 			border-radius: 4px;
@@ -472,12 +472,12 @@
 
 			.button:hover
 			{
-				background: #fd887a;
+				background: #468CE8;
 			}
 			
 			.button:active
 			{
-				background: #ed786a;
+				background: #46BDE8;
 			}
 		
 			.button-alt
@@ -1060,7 +1060,7 @@
 		{
 			font-family: 'Arvo';
 			font-weight: 700;
-			color: #ed786a;
+			color: #46BDE8;
 			text-shadow: 0.05em 0.075em 0 rgba(0,0,0,0.1);
 		}
 
@@ -1140,14 +1140,14 @@
 					#nav > ul > li.active > a:before,
 					#nav > ul > li:hover > a:before
 					{
-						background: #ED786A;
+						background: #46BDE8;
 						color: #fff;
 					}
 			
 					#nav > ul > li.active > a > span,
 					#nav > ul > li:hover > a > span
 					{
-						color: #ED786A;
+						color: #46BDE8;
 					}
 
 /*********************************************************************************/
