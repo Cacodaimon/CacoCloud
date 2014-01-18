@@ -129,4 +129,24 @@ class Atom implements IXmlExporter
 
         $w->endElement(); //entry
     }
+
+    /**
+     * Determines if the output should be downloadable in a browser.
+     *
+     * @return bool
+     */
+    public function isFile()
+    {
+        return false;
+    }
+
+    /**
+     * Gets the desired filename for downloading via HTTP.
+     *
+     * @return string
+     */
+    public function getFileName()
+    {
+        return '';
+    }
 }

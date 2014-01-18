@@ -68,9 +68,13 @@ class REST implements \Caco\Slim\ISlimApp
     {
         $this->app->expires(0);
         $this->app->contentType($contentType);
-        $this->app->response()->setStatus($status);
-
-        echo $exporter->buildXml();
+        $response = $this->app->response();
+        $response->setStatus($status);
+        $response->header('Content-Description', 'File Transfer');
+        if ($exporter->isFile()) {
+            $response->header('Content-Disposition', 'attachment; filename=' . $exporter->getFileName());
+        }
+        $response->body($exporter->buildXml());
     }
 
     /**

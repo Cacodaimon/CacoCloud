@@ -70,4 +70,24 @@ class Xbel implements IXmlExporter
 
         return $w->outputMemory(true);
     }
+
+    /**
+     * Determines if the output should be downloadable in a browser.
+     *
+     * @return bool
+     */
+    public function isFile()
+    {
+        return true;
+    }
+
+    /**
+     * Gets the desired filename for downloading via HTTP.
+     *
+     * @return string
+     */
+    public function getFileName()
+    {
+        return 'CacoCloudBookmarks.xbel';
+    }
 }
