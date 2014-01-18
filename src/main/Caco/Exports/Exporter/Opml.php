@@ -89,7 +89,7 @@ class Opml implements IXmlExporter
             $w->writeAttribute('text', $feed->title);
             $w->writeAttribute('title', $feed->title);
             $w->writeAttribute('type', 'atom');
-            $w->writeAttribute('xmlUrl', "$this->apiUrl/exports/feed/$feed->id/atom");
+            $w->writeAttribute('xmlUrl', "$this->apiUrl/export/feed/$feed->id/atom");
 
             $w->endElement();
         }
