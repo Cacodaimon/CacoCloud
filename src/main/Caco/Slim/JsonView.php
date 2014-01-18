@@ -37,6 +37,6 @@ class JsonView extends \Slim\View
             $response[$key] = $this->data->get($key);
         }
 
-        echo json_encode($response, JSON_NUMERIC_CHECK);
+        $app->response()->body(json_encode($response, JSON_NUMERIC_CHECK));
     }
 }
