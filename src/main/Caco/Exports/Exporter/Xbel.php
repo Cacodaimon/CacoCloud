@@ -60,7 +60,7 @@ class Xbel implements IXmlExporter
         foreach ($this->bookmarks as $bookmark) {
             $w->startElement('bookmark');
             $w->writeAttribute('href', $bookmark->url);
-            $w->writeElement('title', $bookmark->name);
+            $w->writeElement('title', htmlentities($bookmark->name));
             $w->endElement(); //bookmark
         }
 
