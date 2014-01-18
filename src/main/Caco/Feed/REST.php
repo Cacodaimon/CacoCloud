@@ -65,7 +65,7 @@ class REST implements ISlimApp
     }
 
     /**
-     * GET /Feed
+     * GET /feed
      */
     public function getAllFeeds()
     {
