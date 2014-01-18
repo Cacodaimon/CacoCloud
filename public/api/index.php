@@ -25,4 +25,7 @@ $config->register($app);
 $mail = new \Caco\Mail\REST;
 $mail->register($app);
 
+$exports = new \Caco\Exports\REST;
+$exports->register($app);
+
 $app->run();
