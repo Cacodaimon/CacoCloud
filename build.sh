@@ -44,6 +44,6 @@ echo_blue "Set the api url (https://example.com/api)"
 ID=`php cli/run_cli.php --cli="Caco\\Config\\CLI\\Manage" -a list | grep api-url | cut -d' ' -f 3`
 echo -n "URL: "
 read -r URL
-php cli/run_cli.php --cli=Caco\\Config\\CLI\\Manage -a update -i $ID -v URL
+php cli/run_cli.php --cli=Caco\\Config\\CLI\\Manage -a update -i $ID -v $URL
 
 ./run_tests.sh
