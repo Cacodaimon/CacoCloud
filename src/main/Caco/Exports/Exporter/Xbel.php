@@ -52,8 +52,6 @@ class Xbel implements IXmlExporter
 
         $w->startDocument('1.0', 'utf-8');
 
-        $w->writeDtd('xbel');
-
         $w->startElement('xbel');
         $w->writeAttribute('version', '1.0');
 
