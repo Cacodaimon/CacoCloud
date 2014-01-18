@@ -70,3 +70,4 @@ INSERT INTO config (key, value) VALUES ('update-interval-min', 600);
 INSERT INTO config (key, value) VALUES ('update-interval-max', 604800);
 
 INSERT INTO config (key, value) VALUES ('database-version', 1);
+INSERT INTO config (key, value) VALUES ('api-url', 'http://localhost:8000/api');
