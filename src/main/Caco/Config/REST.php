@@ -10,6 +10,11 @@ use Caco\Config\Model\Config;
  */
 class REST implements \Caco\Slim\ISlimApp
 {
+    /**
+     * @var \Slim\Slim
+     */
+    protected $app;
+
     public function one($key)
     {
         $result = (new Config)->readListByPrefix($key);
