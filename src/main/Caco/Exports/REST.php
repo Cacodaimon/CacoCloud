@@ -4,6 +4,7 @@ namespace Caco\Exports;
 use Caco\Bookmark\Model\Bookmark;
 use Caco\Config\Model\Config;
 use Caco\Exports\Exporter\Atom;
+use Caco\Exports\Exporter\BookmarkHtml;
 use Caco\Exports\Exporter\IXmlExporter;
 use Caco\Exports\Exporter\Opml;
 use Caco\Exports\Exporter\Xbel;
@@ -60,6 +61,15 @@ class REST implements \Caco\Slim\ISlimApp
     }
 
     /**
+     * GET /export/bookmark/html
+     */
+    public function getBookmarksHtml()
+    {
+        $bookmarks = (new Bookmark)->readList();
+        $this->xmlOutput(new BookmarkHtml($bookmarks), 200, 'text/html');
+    }
+
+    /**
      * @param IXmlExporter $exporter
      * @param int $status
      * @param string $contentType
@@ -88,9 +98,10 @@ class REST implements \Caco\Slim\ISlimApp
         $this->app = $app;
 
         $app->group('/export', function () {
-                $this->app->get('/feed/opml',          [$this, 'getAllFeedsOpml']);
-                $this->app->get('/feed/:id/atom',      [$this, 'getFeedItemsAtom'])->conditions(['id' => '\d+']);
+                $this->app->get('/feed/opml',     [$this, 'getAllFeedsOpml']);
+                $this->app->get('/feed/:id/atom', [$this, 'getFeedItemsAtom'])->conditions(['id' => '\d+']);
                 $this->app->get('/bookmark/xbel', [$this, 'getBookmarksXbel'])->conditions(['id' => '\d+']);
+                $this->app->get('/bookmark/html', [$this, 'getBookmarksHtml'])->conditions(['id' => '\d+']);
             });
     }
 }
