@@ -18,11 +18,11 @@
         <script src="js/config.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-panels.min.js"></script>
-        <noscript>
-            <link rel="stylesheet" href="css/skel-noscript.css" />
-            <link rel="stylesheet" href="css/style.css" />
-            <link rel="stylesheet" href="css/style-desktop.css" />
-        </noscript>
+        <script src="js/jquery.share.js"></script>
+        <link rel="stylesheet" href="css/skel-noscript.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-desktop.css" />
+        <link rel="stylesheet" href="css/jquery.share.css" />
     </head>
     <body class="left-sidebar">
 
@@ -75,7 +75,6 @@
                                                             </ul>
                                                         </article>
                                                 </li>
-
 
                                                 <li>
                                                         <article class="is-highlight">
@@ -172,31 +171,37 @@
 
                 <!-- Footer -->
                     <div id="footer" class="container">
-                        <div class="row">
-                            <div class="6u">
-                                <p>This project is maintained by <a href="https://github.com/Cacodaimon">Guido Krömer</a></p>
-                            </div>
-                            <div class="6u">
-                                <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://html5up.net/">HTML5 UP</a></small></p>
-                            </div>
+                      <div class="row">
+                        <div class="6u">
+                          <div id="share-area"></div>
                         </div>
+                        <div class="6u">
+                          <p>This project is maintained by <a href="https://github.com/Cacodaimon">Guido Krömer</a></p>
+                          <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://html5up.net/">HTML5 UP</a></small></p>
+                        </div>
+                      </div>
                     </div>
             </div>
     </body>
 
 <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-35896669-2']);
+_gaq.push(['_setDomainName', 'cacodaimon.github.io']);
+_gaq.push(['_trackPageview']);
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35896669-2']);
-  _gaq.push(['_setDomainName', 'cacodaimon.github.io']);
-  _gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
+$(document).ready(function () {
+  $('#share-area').share({
+    theme: 'square',
+    networks: ['facebook','googleplus','twitter','linkedin','in1','email','stumbleupon','digg']
+    });
+});
 </script>
 
 </html>
