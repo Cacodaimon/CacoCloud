@@ -1,5 +1,5 @@
 angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
-    .controller('BookMarkCrtl', function ($rootScope, $scope, $stateParams, $location, BookMarkREST, Alerts) {
+    .controller('BookMarkCrtl', function ($rootScope, $scope, $stateParams, $location, BookMarkREST, Alerts, Paginator) {
         $rootScope.module = 'bookmark';
 
         if ($stateParams.id) {
@@ -10,6 +10,7 @@ angular.module('caco.bookmark.crtl', ['caco.bookmark.REST'])
         if ($location.path() === '/bookmark') {
             BookMarkREST.all({}, function (data) {
                 $scope.bookmarks = data.response;
+                Paginator.reset();
             });
         }
 
