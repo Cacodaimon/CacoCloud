@@ -100,7 +100,11 @@ angular.module('caco.ClientPaginate', [])
 
         this.show = function () {
             return this.pageCount() > 1;
-        }
+        };
+
+        this.reset = function () {
+            this.page = 0;
+        };
     })
     .directive('paginator', function factory() {
         return {
