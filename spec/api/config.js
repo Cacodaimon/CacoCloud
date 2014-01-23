@@ -1,6 +1,6 @@
 module.exports = {
-    apiUrl: 'http://TEST_USER:TEST_PASSWORD@localhost:8000/api/',
-    apiUrlNoAuth: 'http://localhost:8000/api/',
+    apiUrl: 'http://TEST_USER:TEST_PASSWORD@localhost:8000/api/1/',
+    apiUrlNoAuth: 'http://localhost:8000/api/1/',
     mailtrap: {
         host: 'mailtrap.io',
         port: 25,

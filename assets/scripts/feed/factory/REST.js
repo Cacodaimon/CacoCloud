@@ -1,6 +1,6 @@
 angular.module('caco.feed.REST', ['ngResource'])
     .factory('FeedREST', function ($resource) {
-        return $resource('api/feed/:id', {}, {
+        return $resource('api/1/feed/:id', {}, {
             one:    {method: 'GET'},
             all:    {method: 'GET'},
             remove: {method: 'DELETE'},
@@ -9,19 +9,19 @@ angular.module('caco.feed.REST', ['ngResource'])
         });
     })
     .factory('FeedUpdateREST', function ($resource) {
-        return $resource('api/feed/update/:id', {}, {
+        return $resource('api/1/feed/update/:id', {}, {
             perform:    {method: 'GET'}
         });
     })
     .factory('ItemREST', function ($resource) {
-        return $resource('api/feed/:id/item/:id_item', {}, {
+        return $resource('api/1/feed/:id/item/:id_item', {}, {
             one:    {method: 'GET'},
             all:    {method: 'GET'},
             remove: {method: 'DELETE'}
         });
     })
     .factory('FeedCalculateUpdateIntervalsREST', function ($resource) {
-        return $resource('api/feed/calculate-update-interval', {}, {
+        return $resource('api/1/feed/calculate-update-interval', {}, {
             perform:    {method: 'GET'}
         });
     })

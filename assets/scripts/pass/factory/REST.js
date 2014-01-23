@@ -1,6 +1,6 @@
 angular.module('caco.password.REST', ['ngResource', 'caco.password.ActionWrapper'])
     .factory('PasswordREST', function ($resource, PasswordActionWrapper) {
-        var resource = $resource('api/password/:key/:id', {}, {
+        var resource = $resource('api/1/password/:key/:id', {}, {
             one:    {method: 'GET'},
             all:    {method: 'GET'},
             remove: {method: 'DELETE'},

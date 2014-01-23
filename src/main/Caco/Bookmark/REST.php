@@ -87,6 +87,7 @@ class REST extends \Caco\Slim\REST
     {
         $bookmark = new Bookmark;
         if ($bookmark->read($id)) {
+            $this->deleteFavicon($id);
             $this->app->render($bookmark->delete() ? 200 : 500, ['response' => $id]);
         } else {
             $this->app->render(404);
@@ -123,7 +124,19 @@ class REST extends \Caco\Slim\REST
      */
     protected function saveFavicon($url, $id)
     {
-        copy($this->getFaviconFromUrl($url), sprintf('%spublic/icons/bookmark/%d.ico', $this->app->appRoot, $id));
+        copy($this->getFaviconFromUrl($url), sprintf('public/icons/bookmark/%d.ico', $id));
+    }
+
+    /**
+     * Deletes the favicon by its id.
+     *
+     * @param int $id
+     */
+    protected function deleteFavicon($id)
+    {
+        $fileName = sprintf('public/icons/bookmark/%d.ico', $id);
+
+        file_exists($fileName) && unlink($fileName);
     }
 
     /**

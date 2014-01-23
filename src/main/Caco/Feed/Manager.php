@@ -179,7 +179,7 @@ class Manager
      */
     protected function deleteFavicon($id)
     {
-        $fileName = sprintf('../icons/feed/%d.ico', $id);
+        $fileName = sprintf('public/icons/feed/%d.ico', $id);
 
         file_exists($fileName) && unlink($fileName);
     }
@@ -192,7 +192,7 @@ class Manager
      */
     protected function saveFavicon($iconUrl, $id)
     {
-        copy($iconUrl, sprintf('../icons/feed/%d.ico', $id));
+        copy($iconUrl, sprintf('public/icons/feed/%d.ico', $id));
     }
 
     /**

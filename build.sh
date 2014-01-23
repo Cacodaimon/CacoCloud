@@ -19,6 +19,9 @@ grunt
 if [ ! -f composer.phar ]; then
   echo_blue "Installing composer"
   curl -sS https://getcomposer.org/installer | php
+else
+  echo_blue "Updating composer"
+  php composer.phar self-update
 fi
 
 echo_blue "Running composer"
@@ -40,7 +43,7 @@ fi
 
 php cli/run_cli.php --cli=Caco\\Slim\\Auth\\UserManagement -a list
 
-echo_blue "Set the api url (https://example.com/api)"
+echo_blue "Set the api url (https://example.com/api/1)"
 ID=`php cli/run_cli.php --cli="Caco\\Config\\CLI\\Manage" -a list | grep api-url | cut -d' ' -f 3`
 echo -n "URL: "
 read -r URL
