@@ -1,4 +1,4 @@
 RewriteEngine On
-RewriteBase /api/1/
+RewriteBase /install/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
