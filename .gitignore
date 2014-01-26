@@ -11,7 +11,7 @@ vendor/autoload/
 vendor/autoload.php
 
 # SQLite
-*.sqlite3
+*.sqlite*
 
 # Static Files
 *.ico
@@ -31,3 +31,6 @@ reports/
 
 # OS files
 nohup.out
+
+# Other files
+public/install/finished
