@@ -21,17 +21,19 @@ $app->flashKeep();
 
 $app->get('/', function () use ($app) {
         $app->render('./step-requirements.phtml', [
-            'progress'   => 25,
-            'section'    => 'requirements',
-            'https'      => $app->request()->getScheme() == 'https',
-            'imap'       => extension_loaded('imap'),
-            'mcrypt'     => extension_loaded('mcrypt'),
-            'pdo_sqlite' => extension_loaded('pdo_sqlite'),
-            'pcre'       => extension_loaded('pcre'),
-            'curl'       => extension_loaded('curl'),
-            'mbstring'   => extension_loaded('mbstring'),
-            'iconv'      => extension_loaded('iconv'),
-            'php_5_4'    => version_compare(PHP_VERSION, '5.4.0', '>='),
+            'progress'           => 25,
+            'section'            => 'requirements',
+            'https'              => $app->request()->getScheme() == 'https',
+            'imap'               => extension_loaded('imap'),
+            'mcrypt'             => extension_loaded('mcrypt'),
+            'pdo_sqlite'         => extension_loaded('pdo_sqlite'),
+            'pcre'               => extension_loaded('pcre'),
+            'curl'               => extension_loaded('curl'),
+            'mbstring'           => extension_loaded('mbstring'),
+            'iconv'              => extension_loaded('iconv'),
+            'installDirWritable' => is_writable(__DIR__),
+            'iconDirsWritable'   => is_writable(getcwd() . '/public/icons/bookmark') && is_writable(getcwd() . '/public/icons/feed'),
+            'php_5_4'            => version_compare(PHP_VERSION, '5.4.0', '>='),
         ]);
     });
 
