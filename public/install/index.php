@@ -148,13 +148,13 @@ function installationFinished()
  */
 function tabelsExsits(PDO $pdo)
 {
-    return  tabeExisits($pdo, 'user') &&
-            tabeExisits($pdo, 'container') &&
-            tabeExisits($pdo, 'bookmark') &&
-            tabeExisits($pdo, 'feed') &&
-            tabeExisits($pdo, 'item') &&
-            tabeExisits($pdo, 'config') &&
-            tabeExisits($pdo, 'mailaccount');
+    return  tableExisits($pdo, 'user') &&
+            tableExisits($pdo, 'container') &&
+            tableExisits($pdo, 'bookmark') &&
+            tableExisits($pdo, 'feed') &&
+            tableExisits($pdo, 'item') &&
+            tableExisits($pdo, 'config') &&
+            tableExisits($pdo, 'mailaccount');
 }
 
 /**
@@ -164,7 +164,7 @@ function tabelsExsits(PDO $pdo)
  * @param string $tableName
  * @return int
  */
-function tabeExisits(PDO $pdo, $tableName)
+function tableExisits(PDO $pdo, $tableName)
 {
     $sth = $pdo->prepare('SELECT COUNT(1) FROM `sqlite_master` WHERE `type`=\'table\' AND `name`= ?;');
     $sth->execute([$tableName]);
