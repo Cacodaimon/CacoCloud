@@ -1,0 +1,65 @@
+<?php include __DIR__ . '/header.phtml' ?>
+<?php
+/** @var bool $dbExists */
+/** @var bool $dbCreated */
+/** @var int $errorCode */
+/** @var string $errorInfo */
+?>
+
+<h1>Creating the Database</h1>
+
+<?php if(!$dbFound && $dbCreated): ?>
+    <div class="alert alert-success">
+        <strong>
+            <span class="fa fa-check-square-o"></span> Created the database.
+        </strong>
+        <p>
+            The database was created successfully!
+        </p>
+        <p>
+            The database version is: <span class="badge"><?php echo $databaseVersion ?></span>
+        </p>
+    </div>
+<?php endif; ?>
+
+<?php if($dbFound && !$dbCreated): ?>
+    <div class="alert alert-warning">
+        <strong>
+            <span class="fa fa-square-o"></span> Found a exising database.
+        </strong>
+        <p>
+            Skipped creating the database!
+        </p>
+        <p>
+            The database version is: <span class="badge"><?php echo $databaseVersion ?></span>
+        </p>
+    </div>
+<?php endif; ?>
+
+<?php if(!$dbFound && !$dbCreated): ?>
+    <div class="alert alert-danger">
+        <strong>
+            <span class="fa fa-exclamation-triangle"></span> Could not create the Database.
+        </strong>
+        <p>
+            <span class="badge"><?php echo $errorCode ?></span>
+            <?php echo $errorInfo ?>
+        </p>
+    </div>
+<?php endif; ?>
+
+<hr />
+
+<?php if ($dbFound || $dbCreated): ?>
+    <a href="/install/user" class="btn btn-success">
+        <span class="fa fa-chevron-right"></span> Proceed
+    </a>
+<?php else: ?>
+    <div class="alert alert-danger">
+        <strong>
+            <span class="fa fa-frown-o"></span> Sorry, the Database could not be installed.
+        </strong>
+    </div>
+<?php endif; ?>
+
+<?php include __DIR__ . '/footer.phtml' ?>

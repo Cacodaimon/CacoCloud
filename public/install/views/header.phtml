@@ -1,0 +1,56 @@
+<?php /** @var array $flash */ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CacoCloud Installer</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/app.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>CacoCloud Installer</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <?php echo $progress ?>%;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php foreach($flash as $type => $msg): ?>
+            <div class="alert alert-<?php echo $type ?>">
+                <?php echo $msg ?>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group ">
+                <a href="#" class="list-group-item <?php echo $section == 'requirements' ? 'active' : '' ?>">
+                    <h4 class="list-group-item-heading">1. Checking requirements</h4>
+                </a>
+                <a href="#" class="list-group-item <?php echo $section == 'database' ? 'active' : '' ?>">
+                    <h4 class="list-group-item-heading">2. Creating database</h4>
+                </a>
+                <a href="#" class="list-group-item <?php echo $section == 'user' ? 'active' : '' ?>">
+                    <h4 class="list-group-item-heading">3. Creating a new user</h4>
+                </a>
+                <a href="#" class="list-group-item <?php echo $section == 'finish' ? 'active' : '' ?>">
+                    <h4 class="list-group-item-heading">4. Finishing installation</h4>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8">

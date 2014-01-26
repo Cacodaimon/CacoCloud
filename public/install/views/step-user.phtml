@@ -1,0 +1,67 @@
+<?php include __DIR__ . '/header.phtml' ?>
+
+<h1>Creating a new user</h1>
+
+<form class="form-horizontal" method="post" action="/install/user">
+    <fieldset>
+        <legend>New user</legend>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"
+                   for="userName">Username</label>
+            <div class="col-md-5">
+                <input id="userName"
+                       name="userName"
+                       type="text"
+                       placeholder="pick a Username"
+                       pattern=".{2,}"
+                       title="Two characters minimum."
+                       class="form-control input-md"
+                       required>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"
+                   for="password">Password</label>
+            <div class="col-md-5">
+                <input id="password"
+                       name="password"
+                       type="password"
+                       placeholder="Choose a password"
+                       pattern=".{6,}"
+                       title="Six characters minimum."
+                       class="form-control input-md"
+                       required>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"
+                   for="passwordConfirm">Password confirm</label>
+            <div class="col-md-5">
+                <input id="passwordConfirm"
+                       name="passwordConfirm"
+                       type="password"
+                       placeholder="Repeat your password"
+                       pattern=".{6,}"
+                       title="Six characters minimum."
+                       class="form-control input-md"
+                       required>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+                <button id="" name="" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+<?php include __DIR__ . '/footer.phtml' ?>

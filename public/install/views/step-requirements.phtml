@@ -1,0 +1,105 @@
+<?php include __DIR__ . '/header.phtml' ?>
+<?php
+/** @var bool $php_5_4 */
+/** @var bool $pdo_sqlite */
+/** @var bool $mcrypt */
+/** @var bool $imap */
+/** @var bool $pcre */
+/** @var bool $curl */
+/** @var bool $iconv */
+/** @var bool $https */
+?>
+
+<h1>Checking requirements</h1>
+
+<div class="alert alert-<?php echo $php_5_4 ? 'success' : 'danger' ?>">
+    <strong>
+        <span class="fa <?php echo $php_5_4 ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP 5.4 or greater
+    </strong>
+    <p>
+        CacoCloud needs PHP 5.4 or greater to run!
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $pdo_sqlite ? 'success' : 'danger' ?>">
+    <strong>
+        <span class="fa <?php echo $pdo_sqlite ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP pdo_sqlite
+    </strong>
+    <p>
+        CacoCloud won't run without SQLite!
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $mcrypt ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $mcrypt ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP mcrypt
+    </strong>
+    <p>
+        Needed by the password manager and mail client.
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $imap ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $imap ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP imap
+    </strong>
+    <p>
+        Needed only by the mail client.
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $pcre ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $pcre ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP pcre
+    </strong>
+    <p>
+        Needed only by the feed reader!
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $curl ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $curl ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP cURL
+    </strong>
+    <p>
+        Needed only by the feed reader!
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $iconv ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $iconv ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP iconv
+    </strong>
+    <p>
+        Optional, needed only by the feed reader!
+    </p>
+</div>
+
+<div class="alert alert-<?php echo $https ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $https ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> HTTPS
+    </strong>
+    <p>
+        It is suggested to run CacoCloud only with HTTPS!
+    </p>
+</div>
+
+<hr />
+
+<?php if ($php_5_4 && $pdo_sqlite && $mcrypt && $imap && $https): ?>
+<a href="/install/database" class="btn btn-success">
+    <span class="fa fa-chevron-right"></span> Proceed
+</a>
+<?php elseif ($php_5_4 && $pdo_sqlite): ?>
+<a href="/install/database" class="btn btn-warning">
+    <span class="fa fa-chevron-right"></span> Proceed with warnings
+</a>
+<?php else: ?>
+<div class="alert alert-danger">
+    <strong>
+        <span class="fa fa-frown-o"></span> Sorry CacoCloud will not run with your current configuration.
+    </strong>
+</div>
+<?php endif; ?>
+
+<?php include __DIR__ . '/footer.phtml' ?>
