@@ -3,7 +3,6 @@
     "require": {
         "php": ">=5.4.0",
         "slim/slim": "2.3.*",
-        "slim/extras": "*",
         "simplepie/simplepie": "1.*",
         "phpmailer/phpmailer": "5.2.*"
     },
