@@ -122,21 +122,6 @@ class Feed extends MiniAR
     }
 
     /**
-     * Deletes the Feed and all items associated to this feed.
-     *
-     * @return bool
-     */
-    public function delete()
-    {
-        $items = (new Item)->readList('id_feed = ?', [$this->id]);
-        foreach ($items as $item) { /** @var Item $item */
-            $item->delete();
-        }
-
-        return parent::delete();
-    }
-
-    /**
      * Gets a assoc array containing the default values of the data fields.
      *
      * @return array

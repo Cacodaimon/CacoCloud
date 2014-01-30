@@ -3,6 +3,7 @@ namespace Caco\Feed;
 
 use Caco\Feed\Model\Feed;
 use Caco\Feed\Model\Item;
+use Caco\Feed\Model\ItemQueue;
 use \Slim\Slim;
 use \Caco\Slim\ISlimApp;
 
@@ -187,6 +188,42 @@ class REST implements ISlimApp
         $this->app->render(200, ['response' => $this->manager->calculateUpdateInterval()]);
     }
 
+    /**
+     * POST /feed/item/queue/:id
+     *
+     * @param $id
+     */
+    public function enqueueItem($id)
+    {
+        $item = new Item;
+
+        if (!$item->read($id)) {
+            $this->app->render(404, ['response' => $id]);
+
+            return;
+        }
+
+        if ((new ItemQueue)->enqueue($id)) {
+            $this->app->render(201, ['response' => $id]);
+        } else {
+            $this->app->render(500);
+        }
+    }
+
+    /**
+     * GET /feed/item/queue
+     */
+    public function dequeueItem()
+    {
+        $itemQueue = new ItemQueue;
+
+        if ($itemQueue->dequeue()) {
+            $this->getItem($itemQueue->id_item);
+        } else {
+            $this->app->render(404);
+        }
+    }
+
     public function register(Slim $app)
     {
         $this->app = $app;
@@ -201,8 +238,10 @@ class REST implements ISlimApp
                 $this->app->get('/item',                      [$this, 'getAllItems']);
                 $this->app->get('/:id/item',                  [$this, 'getItems'])      ->conditions(['id' => '\d+']);
                 $this->app->get('/item/:id',                  [$this, 'getItem'])       ->conditions(['id' => '\d+']);
+                $this->app->get('/item/queue',                [$this, 'dequeueItem']);
                 $this->app->put('/:id',                       [$this, 'editFeed'])      ->conditions(['id' => '\d+']);
                 $this->app->post('',                          [$this, 'addFeed']);
+                $this->app->post('/item/queue/:id',           [$this, 'enqueueItem'])   ->conditions(['id' => '\d+']);
                 $this->app->delete('/:id',                    [$this, 'deleteFeed'])    ->conditions(['id' => '\d+']);
                 $this->app->delete('/item/:id',               [$this, 'deleteItem'])    ->conditions(['id' => '\d+']);
                 $this->app->get('/calculate-update-interval', [$this, 'calculateUpdateInterval']);
