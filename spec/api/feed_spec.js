@@ -215,7 +215,7 @@ frisby.create('API: Test item queue - add a test feed')
                                                     id: items[0].id
                                                 }
                                             })
-                                            .afterJSON(function (responseFirstItem) {
+                                            .afterJSON(function () {
                                                 frisby.create('API: Test item queue - get second item from queue')
                                                     .get(url + '/item/queue')
                                                     .expectHeaderContains('content-type', 'application/json')
