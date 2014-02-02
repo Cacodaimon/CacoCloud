@@ -100,7 +100,6 @@ class Item extends \Caco\MiniAR
                       i.`id_feed`,
                       i.`title`,
                       i.`author`,
-                      i.`content`,
                       i.`url`,
                       i.`date`,
                       i.`read`,
