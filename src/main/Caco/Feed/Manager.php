@@ -89,7 +89,7 @@ class Manager
      */
     public function getAllItems()
     {
-        return (new Item)->readList('1', [], 'id, uuid, id_feed, title, author, url, date, read');
+        return (new Item)->readItems();
     }
 
     /**

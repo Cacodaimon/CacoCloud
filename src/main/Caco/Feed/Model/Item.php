@@ -51,6 +51,74 @@ class Item extends \Caco\MiniAR
     public $read = 0;
 
     /**
+     * @var int
+     */
+    public $queued = 0;
+
+    /**
+     * Read an active record from the database by it's id.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function read($id)
+    {
+        $query = sprintf('  SELECT
+                                i.`id`,
+                                i.`uuid`,
+                                i.`id_feed`,
+                                i.`title`,
+                                i.`author`,
+                                i.`content`,
+                                i.`url`,
+                                i.`date`,
+                                i.`read`,
+                                CASE WHEN iq.`id` IS NULL THEN 0 ELSE 1 END AS `queued`
+                            FROM `%s` i
+                            LEFT JOIN `%s` iq ON iq.`id_item` = i.`id`
+                            WHERE i.`id` = ?
+                              AND i.`id` IS NOT NULL
+                            LIMIT 1;',
+            $this->getTableName(),
+            (new ItemQueue)->getTableName());
+
+        return $this->readOne($query, [$id]);
+    }
+
+    /**
+     * Returns a list of active records matching the query.
+     *
+     * @throws MiniARException
+     * @param int $where
+     * @return Item[]
+     */
+    public function readItems($idFeed = null)
+    {
+        $query = 'SELECT
+                      i.`id`,
+                      i.`uuid`,
+                      i.`id_feed`,
+                      i.`title`,
+                      i.`author`,
+                      i.`content`,
+                      i.`url`,
+                      i.`date`,
+                      i.`read`,
+                      CASE WHEN iq.`id` IS NULL THEN 0 ELSE 1 END AS `queued`
+                  FROM `%s` i
+                  LEFT JOIN `%s` iq ON iq.`id_item` = i.`id`
+                  WHERE %s';
+
+        $query = sprintf(
+            $query,
+            $this->getTableName(),
+            (new ItemQueue)->getTableName(),
+            is_null($idFeed) ? '1' : '`id_feed` = ?');
+
+        return $this->readArray($query, is_null($idFeed) ? [] : [$idFeed]);
+    }
+
+    /**
      * Performs some item cleanup operations and returns the number of deleted rows.
      *
      * @param Feed $feed
@@ -77,14 +145,15 @@ class Item extends \Caco\MiniAR
         $additionalConditions = $config['auto-cleanup-only-read'] == Config::TRUE ? 'AND read = 1' : '';
 
         $sth = $this->pdo->prepare("DELETE FROM item
-                                    WHERE id IN (
-                                        SELECT id
-                                        FROM item
-                                        WHERE id_feed = ?
-                                        AND date < ? $additionalConditions
-                                        ORDER BY date DESC
-                                        LIMIT ?, 10000
-                                    );");
+                                        WHERE id IN (
+                                            SELECT id
+                                            FROM item
+                                            WHERE id_feed = ?
+                                            AND date < ? $additionalConditions
+                                            ORDER BY date DESC
+                                            LIMIT ?, 10000
+                                        );"
+        );
         $sth->execute(
             [
             $feed->id,
@@ -109,13 +178,39 @@ class Item extends \Caco\MiniAR
             return 0;
         }
 
-        $query = '  DELETE FROM item
-                    WHERE id IN (
-                        SELECT id FROM item WHERE id_feed = ? ORDER BY date DESC LIMIT ?, 100000
-                    );';
+        $query = 'DELETE FROM item
+                  WHERE id IN (
+                      SELECT id FROM item WHERE id_feed = ? ORDER BY date DESC LIMIT ?, 100000
+                  );';
         $sth   = $this->pdo->prepare($query);
         $sth->execute([$feed->id, $config['auto-cleanup-max-item-count']]);
 
         return $sth->rowCount();
+    }
+
+    /**
+     * Gets a assoc array containing the default values of the data fields.
+     *
+     * @return array
+     */
+    protected function getDefaultFields()
+    {
+        $fields = parent::getDefaultFields();
+        unset($fields['queued']);
+
+        return $fields;
+    }
+
+    /**
+     * Gets a list of all data fields.
+     *
+     * @return array
+     */
+    protected function getFields()
+    {
+        $fields = parent::getFields();
+        unset($fields['queued']);
+
+        return $fields;
     }
 }

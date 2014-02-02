@@ -49,16 +49,29 @@ abstract class MiniAR
             $this->getTableName()
         );
 
+        return $this->readOne($query, [$id]);
+    }
+
+    /**
+     * Read an active record from the database by the given query and bind array.
+     *
+     * @throws MiniARException
+     * @param string $query
+     * @param array $bind
+     * @return bool
+     */
+    protected function readOne($query, array $bind = [])
+    {
         $sth = $this->pdo->prepare($query);
 
         if ($this->pdo->errorCode() != '00000') {
             throw new MiniARException($this->pdo->errorInfo()[0], $this->pdo->errorCode());
         }
 
-        $sth->execute([$id]);
+        $sth->execute($bind);
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-        if (empty($result)) {
+        if (empty($result) || is_null($result[0]['id'])) {
             return false;
         }
 
@@ -84,6 +97,19 @@ abstract class MiniAR
             $where
         );
 
+        return $this->readArray($query, $bind);
+    }
+
+    /**
+     * Returns an array of active records matching the given query and bind array.
+     *
+     * @param string $query
+     * @param array $bind
+     * @return array
+     * @throws MiniARException
+     */
+    protected function readArray($query, array $bind = [])
+    {
         $sth = $this->pdo->prepare($query);
 
         if ($this->pdo->errorCode() != '00000') {

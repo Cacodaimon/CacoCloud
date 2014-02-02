@@ -115,9 +115,7 @@ class REST implements ISlimApp
      */
     public function getItems($id)
     {
-        $items = (new Item)->readList('id_feed = ?', [$id], 'id, id_feed, title, author, url, date, read');
-
-        $this->app->render(200, ['response' => $items]);
+        $this->app->render(200, ['response' => (new Item)->readItems($id)]);
     }
 
     /**

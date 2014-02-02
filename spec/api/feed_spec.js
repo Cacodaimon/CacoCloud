@@ -107,7 +107,8 @@ frisby.create('API: Add a new feed')
                     id_feed: Number,
                     title: String,
                     date: Number,
-                    read: Number
+                    read: Number,
+                    queued: Number
                 }]
             })
             .afterJSON(function (api) {
@@ -126,7 +127,8 @@ frisby.create('API: Add a new feed')
                             content: String,
                             url: String,
                             date: Number,
-                            read: Number
+                            read: Number,
+                            queued: Number
                         }
                     })
                     .afterJSON(function (api) {
@@ -206,7 +208,8 @@ frisby.create('API: Test item queue - add a test feed')
                                                     content: String,
                                                     url: String,
                                                     date: Number,
-                                                    read: Number
+                                                    read: Number,
+                                                    queued: Number
                                                 }
                                             })
                                             .expectJSON({
