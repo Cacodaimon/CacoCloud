@@ -43,13 +43,21 @@ CREATE TABLE IF NOT EXISTS item (
   read INTEGER,
   FOREIGN KEY (id_feed) REFERENCES feed(id) ON DELETE CASCADE
 );
+CREATE INDEX fk_item_id_feed ON item (id_feed);
+
+CREATE TABLE IF NOT EXISTS itemqueue (
+  id INTEGER PRIMARY KEY,
+  id_item INTEGER UNIQUE,
+  inserted INTEGER NOT NULL,
+  FOREIGN KEY (id_item) REFERENCES item(id) ON DELETE CASCADE
+);
+CREATE INDEX fk_itemqueue_id_item ON itemqueue (id_item);
 
 CREATE TABLE IF NOT EXISTS config (
   id INTEGER PRIMARY KEY,
   key TEXT UNIQUE,
   value TEXT NOT NULL
 );
-
 
 CREATE TABLE IF NOT EXISTS mailaccount (
   id INTEGER PRIMARY KEY,
@@ -69,5 +77,5 @@ INSERT INTO config (key, value) VALUES ('auto-cleanup-max-item-count-enabled', '
 INSERT INTO config (key, value) VALUES ('update-interval-min', 600);
 INSERT INTO config (key, value) VALUES ('update-interval-max', 604800);
 
-INSERT INTO config (key, value) VALUES ('database-version', 1);
+INSERT INTO config (key, value) VALUES ('database-version', 2);
 INSERT INTO config (key, value) VALUES ('api-url', 'http://localhost:8000/api');

@@ -25,6 +25,12 @@ angular.module('caco.feed.REST', ['ngResource'])
             perform:    {method: 'GET'}
         });
     })
+    .factory('ItemQueueREST', function ($resource) {
+        return $resource('api/1/feed/item/queue/:id', {}, {
+            enqueue:    {method: 'POST'},
+            dequeue:    {method: 'GET'}
+        });
+    })
     .factory('FeedUrlLookupREST', function ($resource) {
         return $resource('http://ajax.googleapis.com/ajax/services/feed/lookup', {},{
             lookup: { method: 'JSONP', params: {v: '1.0', callback: 'JSON_CALLBACK'} }

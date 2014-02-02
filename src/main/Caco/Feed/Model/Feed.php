@@ -46,7 +46,6 @@ class Feed extends MiniAR
      */
     public $outdated = 0;
 
-
     /**
      * Read an active record from the database by it's id.
      *
@@ -55,36 +54,22 @@ class Feed extends MiniAR
      */
     public function read($id)
     {
-        $query = sprintf('  SELECT
-                                f.id,
-                                f.title,
-                                f.url,
-                                f.updated,
-                                f.interval,
-                                COUNT(f.id) AS total,
-                                SUM(CASE WHEN i.id IS NULL OR i.read = 1 THEN 0 ELSE 1 END) AS unread,
-                                CASE WHEN updated < (? - interval) THEN 1 ELSE 0 END AS outdated
-                            FROM feed f
-                            LEFT JOIN item i ON (i.id_feed = f.id)
-                            WHERE f.id = ?
-                            LIMIT 1;');
+        $query = sprintf('SELECT
+                              f.`id`,
+                              f.`title`,
+                              f.`url`,
+                              f.`updated`,
+                              f.`interval`,
+                              COUNT(f.`id`) AS `total`,
+                              SUM(CASE WHEN i.`id` IS NULL OR i.`read` = 1 THEN 0 ELSE 1 END) AS `unread`,
+                              CASE WHEN `updated` < (? - `interval`) THEN 1 ELSE 0 END AS `outdated`
+                          FROM `%s` f
+                          LEFT JOIN `%s` i ON (i.`id_feed` = f.`id`)
+                          WHERE f.`id` = ?
+                          LIMIT 1;', $this->getTableName(), (new Item)->getTableName());
 
-        $sth   = $this->pdo->prepare($query);
 
-        if ($this->pdo->errorCode() != '00000') {
-            throw new MiniARException($this->pdo->errorInfo()[0], $this->pdo->errorCode());
-        }
-
-        $sth->execute([time(), $id]);
-        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-
-        if (empty($result) || is_null($result[0]['id'])) {
-            return false;
-        }
-
-        $this->setArray($result[0]);
-
-        return true;
+        return $this->readOne($query, [time(), $id]);
     }
 
     /**
@@ -94,46 +79,21 @@ class Feed extends MiniAR
      */
     public function all()
     {
-        $query = sprintf('  SELECT
-                                f.id,
-                                f.title,
-                                f.url,
-                                f.updated,
-                                f.interval,
-                                COUNT(f.id) AS total,
-                                SUM(CASE WHEN i.id IS NULL OR i.read = 1 THEN 0 ELSE 1 END) AS unread,
-                                CASE WHEN updated < (? - interval) THEN 1 ELSE 0 END AS outdated
-                            FROM feed f
-                            LEFT JOIN item i ON (i.id_feed = f.id)
-                            GROUP BY f.id ORDER BY unread DESC;');
+        $query = sprintf('SELECT
+                              f.`id`,
+                              f.`title`,
+                              f.`url`,
+                              f.`updated`,
+                              f.`interval`,
+                              COUNT(f.id) AS `total`,
+                              SUM(CASE WHEN i.`id` IS NULL OR i.`read` = 1 THEN 0 ELSE 1 END) AS `unread`,
+                              CASE WHEN `updated` < (? - `interval`) THEN 1 ELSE 0 END AS `outdated`
+                          FROM `%s` f
+                          LEFT JOIN `item` i ON (i.`id_feed` = f.`id`)
+                          GROUP BY f.`id`
+                          ORDER BY `unread` DESC;', $this->getTableName());
 
-        $sth   = $this->pdo->prepare($query);
-        $sth->execute([time()]);
-
-        $className = get_class($this);
-        $result    = [];
-        foreach ($sth->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-            /** @var MiniAR $item */
-            $result[] = $item = new $className($this->pdo);
-            $item->setArray($row);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Deletes the Feed and all items associated to this feed.
-     *
-     * @return bool
-     */
-    public function delete()
-    {
-        $items = (new Item)->readList('id_feed = ?', [$this->id]);
-        foreach ($items as $item) { /** @var Item $item */
-            $item->delete();
-        }
-
-        return parent::delete();
+        return $this->readArray($query, [time()]);
     }
 
     /**

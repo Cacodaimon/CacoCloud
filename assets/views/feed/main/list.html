@@ -31,15 +31,22 @@
                         <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}"
                            ng-bind-html="item.title"></a>
                     </strong>
-                    <span ng-if="item.author">
+                    <span>
                         <br />
-                        <small>{{item.author}}</small>
+                        <small>
+                            {{item.date | unixTimeStamp | date:'yyyy-MM-dd HH:mm'}}
+                        </small>
+                        <small ng-if="item.author">- {{item.author}}</small>
                     </span>
                 </td>
                 <td>
-                    <small>
-                        {{item.date | unixTimeStamp | date:'yyyy-MM-dd HH:mm'}}
-                    </small>
+                    <button type="button"
+                            class="btn btn-primary btn-sm"
+                            title="Enqueue item"
+                            ng-hide="item.queued"
+                            ng-click="enqueue(item)">
+                        <span class="fa fa-inbox"></span>
+                    </button>
                 </td>
             </tr>
         </tbody>

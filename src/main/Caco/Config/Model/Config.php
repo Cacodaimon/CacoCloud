@@ -31,19 +31,16 @@ class Config extends \Caco\MiniAR
     public function readKey($key)
     {
         $query = sprintf('SELECT %s FROM `%s` WHERE `key` = ? LIMIT 1;', $this->getFieldList(), $this->getTableName());
-        $sth   = $this->pdo->prepare($query);
-        $sth->execute([$key]);
-        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-        if (empty($result)) {
-            return false;
-        }
-
-        $this->setArray($result[0]);
-
-        return true;
+        return $this->readOne($query, [$key]);
     }
 
+    /**
+     * Returns an array of config records matching the given prefix.
+     *
+     * @param $prefix
+     * @return Config[]
+     */
     public function readListByPrefix($prefix)
     {
         return $this->readList('key LIKE ?', [$prefix . '%']);

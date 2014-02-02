@@ -7,4 +7,8 @@ angular.module('caco.feed.crtl')
             $location.hash('feed-items');
             $anchorScroll();
         });
+
+        $scope.enqueue = function (item) {
+            Items.enqueue(item)
+        };
     });

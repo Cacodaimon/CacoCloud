@@ -1,0 +1,31 @@
+<br />
+<div class="container" ng-hide="notFound">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <button type="button"
+                    class="btn btn-primary btn-lg btn-block"
+                    title="Dequeue item"
+                    ng-click="dequeue()">
+                <span class="fa fa-refresh"></span> Next
+            </button>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12" ui-view>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-show="notFound">
+    <div class="row" ng-show="notFound">
+        <div class="alert alert-info">
+            <span class="fa fa-frown-o"></span> The read queue is empty.
+            <a type="button"
+                    class="btn btn-primary btn-block"
+                    href="#/feed/show">
+                <span class="fa fa-rss"></span> Back to feeds
+            </a>
+        </div>
+    </div>
+</div>

@@ -91,7 +91,7 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
             $rootScope.$broadcast('FeedsUpdated');
         };
     })
-    .service('Items', function (Feeds, ItemREST, TempStorage) {
+    .service('Items', function (Feeds, ItemREST, TempStorage, ItemQueueREST) {
         this.all = function (id, callback) {
             id = id ? id : 0;
 
@@ -107,6 +107,10 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
         };
 
         var markRead = function (idItem, idFeed) {
+            setValue(idItem, idFeed, 'read', 1)
+        };
+
+        var setValue = function (idItem, idFeed, field, value) {
             if (!TempStorage.contains('items-' + idFeed)) {
                 return;
             }
@@ -117,7 +121,7 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
                 if (itemsCacheTmp[i].id != idItem) {
                     continue;
                 }
-                itemsCacheTmp[i].read = 1;
+                itemsCacheTmp[i][field] = value;
             }
             TempStorage.setObject('items-' + idFeed, itemsCacheTmp);
         };
@@ -126,18 +130,37 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
             if (TempStorage.contains('item-' + params.id_item)) {
                 callback(TempStorage.getObject('item-' + params.id_item));
             } else {
-                ItemREST.one({id_item: params.id_item}, {}, function (item) {
-                    var response = item.response;
+                ItemREST.one({id_item: params.id_item}, {}, function (response) {
+                    var item = response.response;
 
-                    TempStorage.setObject('item-' + params.id_item, response);
-                    callback(response);
+                    TempStorage.setObject('item-' + params.id_item, item);
+                    callback(item);
 
-                    if (response.read == 0) {
-                        markRead(response.id, response.id_feed);
-                        markRead(response.id, 0);
-                        Feeds.decRead(response.id_feed);
+                    if (item.read == 0) {
+                        markRead(item.id, item.id_feed);
+                        markRead(item.id, 0);
+                        Feeds.decRead(item.id_feed);
                     }
                 });
             }
+        };
+
+        this.enqueue = function (item) {
+            ItemQueueREST.enqueue({id: item.id}, {}, function () {
+                setValue(item.id, item.id_feed, 'queued', 1);
+                item.queued = 1;
+            });
+        };
+
+        this.dequeue = function (callback) {
+            ItemQueueREST.dequeue({}, {}, function(response) {
+                var item = response.response;
+                setValue(item.id, item.id_feed, 'queued', 0);
+                markRead(item.id, item.id_feed);
+                markRead(item.id, 0);
+                callback(item, true);
+            }, function () {
+                callback(null, false);
+            });
         };
     });

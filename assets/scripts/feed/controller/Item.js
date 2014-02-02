@@ -8,8 +8,6 @@ angular.module('caco.feed.crtl')
         });
 
         $scope.addToBookmark = function (item) {
-            console.log(item);
-
             BookMarkREST.add({}, {name: item.title, url: item.url}, function () {
                 $location.path('/bookmark');
             });
