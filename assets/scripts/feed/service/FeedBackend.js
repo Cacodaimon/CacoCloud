@@ -156,8 +156,11 @@ angular.module('caco.feed.backend', ['caco.TemporaryStorage', 'caco.feed.REST'])
             ItemQueueREST.dequeue({}, {}, function(response) {
                 var item = response.response;
                 setValue(item.id, item.id_feed, 'queued', 0);
-                markRead(item.id, item.id_feed);
-                markRead(item.id, 0);
+                if (item.read == 0) {
+                    markRead(item.id, item.id_feed);
+                    markRead(item.id, 0);
+                    Feeds.decRead(item.id_feed);
+                }
                 callback(item, true);
             }, function () {
                 callback(null, false);
