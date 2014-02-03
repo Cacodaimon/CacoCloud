@@ -3,7 +3,8 @@ chdir(__DIR__ . '/../../../');
 ini_set('session.use_cookies', 0);
 require 'vendor/autoload.php';
 
-\Caco\MiniAR::setDefaultPdo(new \PDO('sqlite:database/app.sqlite3'));
+\Caco\MiniAR::setDefaultPdo($pdo = new \PDO('sqlite:database/app.sqlite3'));
+$pdo->exec('PRAGMA foreign_keys = ON');
 
 $app = new \Slim\Slim();
 $app->view(new \Caco\Slim\JsonView);

@@ -4,7 +4,8 @@ if (PHP_SAPI !== 'cli') {
 }
 
 require  __DIR__ . '/../vendor/autoload.php';
-\Caco\MiniAR::setDefaultPdo(new \PDO('sqlite:' . __DIR__ . '/../database/app.sqlite3'));
+\Caco\MiniAR::setDefaultPdo($pdo = new \PDO('sqlite:' . __DIR__ . '/../database/app.sqlite3'));
+$pdo->exec('PRAGMA foreign_keys = ON');
 
 $opts = getopt('c:', ['cli:']);
 
