@@ -229,6 +229,13 @@ frisby.create('API: Test item queue - add a test feed')
                                                             id: items[1].id
                                                         }
                                                     })
+                                                    .afterJSON(function () {
+                                                        frisby.create('API: Test item queue - delete test feed')
+                                                            .delete(url + '/' + id)
+                                                            .expectHeaderContains('content-type', 'application/json')
+                                                            .expectStatus(200)
+                                                            .toss();
+                                                    })
                                                     .toss();
                                             })
                                             .toss();
