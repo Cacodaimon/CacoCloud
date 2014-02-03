@@ -123,6 +123,22 @@ $app->get('/finish', function () use ($app, $pdo) {
               ]);
     });
 
+$app->get('/update', function () use ($app, $pdo) {
+        $config = new \Caco\Config\Model\Config;
+        $config->readKey('database-version');
+        $databaseVersion = $config->value;
+
+        if ($databaseVersion < 2) {
+            $sql = file_get_contents('database/create.sql');
+            $pdo->exec($sql);
+            $app->flash('success', 'Update: Updated to database Version 2!');
+        } else {
+            $app->flash('success', 'Update: Nothing to do&hellip;');
+        }
+
+        $app->redirect('/install/finish');
+    });
+
 $app->get('/already-installed', function () use ($app, $pdo) {
         $app->flash('danger', 'It seems that CacoCloud has been already installed! ');
         $app->flash('warning', 'If not please removed the <code>public/install/finished</code> file! ');
