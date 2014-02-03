@@ -31,6 +31,7 @@ module.exports = function (grunt) {
         'assets/scripts/feed/controller/Item.js',
         'assets/scripts/feed/controller/Items.js',
         'assets/scripts/feed/controller/ItemQueue.js',
+        'assets/scripts/feed/controller/ItemQueueMain.js',
         'assets/scripts/feed/filter/SumByKey.js',
         'assets/scripts/feed/config.js',
         'assets/scripts/bookmark/factory/REST.js',

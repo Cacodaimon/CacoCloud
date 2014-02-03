@@ -7,13 +7,6 @@ angular.module('caco.feed.crtl')
             $scope.notFound = !found;
         });
 
-        $scope.dequeue = function () {
-            Items.dequeue(function (item, found) {
-                found && $rootScope.$broadcast('ItemDequeued', item);
-                $scope.notFound = !found;
-            });
-        };
-
         $rootScope.$on('ItemDequeued', function (event, item) {
             $scope.item = item;
         });
