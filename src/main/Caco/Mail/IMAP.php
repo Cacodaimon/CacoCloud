@@ -277,7 +277,7 @@ class IMAP
             $mailHeader->subject = utf8_encode(imap_utf8($overview->subject));
         }
         if (property_exists($overview, 'from')) {
-            $mailHeader->from = utf8_encode(imap_utf8($overview->subject));
+            $mailHeader->from = utf8_encode(imap_utf8($overview->from));
         }
         if (property_exists($overview, 'to')) {
             $mailHeader->to = utf8_encode(imap_utf8($overview->subject));
