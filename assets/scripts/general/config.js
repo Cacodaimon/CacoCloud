@@ -1,3 +1,5 @@
+angular.module('caco.password', []);
+
 angular.module('caco', ['ngAnimate', 'ngSanitize', 'caco.Credentials', 'caco.Alerts', 'caco.filter', 'caco.general.crtl', 'caco.password', 'caco.bookmark', 'caco.feed', 'caco.mail', 'caco.ClientPaginate'])
     .config(function($stateProvider) {
         $stateProvider

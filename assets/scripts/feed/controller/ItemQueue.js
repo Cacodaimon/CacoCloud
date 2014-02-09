@@ -1,5 +1,5 @@
 angular.module('caco.feed.crtl')
-    .controller('ItemQueueCrtl', function ($rootScope, $scope, $stateParams, $location, Items) {
+    .controller('ItemQueueCrtl', function ($rootScope, $scope, $stateParams, $location, Items, BookMarkREST) {
         $rootScope.module = 'feed';
 
         Items.dequeue(function (item, found) {

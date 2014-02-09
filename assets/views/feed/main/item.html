@@ -14,6 +14,7 @@
                target="_blank">{{item.url}}</a>
             <hr />
             <a class="btn btn-success btn-sm"
+               ng-if="moduleBookmark"
                ng-click="addToBookmark(item)">
                 <span class="fa fa-bookmark"></span> Add to bookmarks
             </a>

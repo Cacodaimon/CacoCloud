@@ -12,22 +12,26 @@
                         <div class="col-xs-6 col-xs-offset-3">
                             <a href="#/password"
                                class="btn btn-danger btn-lg"
-                               role="button">
+                               role="button"
+                               ng-show="modulePassword">
                                 <span class="fa fa-lock"></span> <br/>Password
                             </a>
                             <a href="#/bookmark"
                                class="btn btn-warning btn-lg"
-                               role="button">
+                               role="button"
+                               ng-show="moduleBookmark">
                                 <span class="fa fa-bookmark"></span> <br/>Bookmarks
                             </a>
                             <a href="#/feed/show"
                                class="btn btn-success btn-lg"
-                               role="button">
+                               role="button"
+                               ng-show="moduleFeed">
                                 <span class="fa fa-rss"></span><br/>RSS
                             </a>
                             <a href="#/mail"
                                class="btn btn-info btn-lg"
-                               role="button">
+                               role="button"
+                               ng-show="moduleMail">
                                 <span class="fa fa-envelope"></span><br/>Mail
                             </a>
                             <a class="btn btn-warning btn-lg"

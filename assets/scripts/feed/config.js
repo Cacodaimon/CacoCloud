@@ -13,4 +13,7 @@ angular.module('caco.feed', ['ui.router', 'caco.feed.crtl', 'caco.feed.filter'])
             .state('feed-manage.edit',             {url: '/feed/manage/edit/:id',        templateUrl: 'views/feed/manage/edit.html',            controller: 'FeedManageCrtl'    })
             .state('feed-manage.update-interval',  {url: '/feed/manage/update-interval', templateUrl: 'views/feed/manage/update-interval.html', controller: 'FeedManageUpdateIntervalCrtl'})
             .state('feed-manage.auto-cleanup',     {url: '/feed/manage/auto-cleanup',    templateUrl: 'views/feed/manage/auto-cleanup.html',    controller: 'FeedManageAutoCleanupCrtl'});
+    })
+    .run(function($rootScope) {
+        $rootScope.moduleFeed = true;
     });

@@ -37,12 +37,13 @@
          id="main-navbar-collapse">
         <ul class="nav navbar-nav">
 
-            <li>
+            <li ng-if="modulePassword">
                  <a href="#/password">
                      <span class="fa fa-lock" title="password"></span>
                  </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+                ng-if="modulePassword">
                 <a class="dropdown-toggle"
                    data-toggle="dropdown">
                     <b class="caret"></b>
@@ -56,12 +57,13 @@
                 </ul>
             </li>
 
-            <li>
+            <li ng-if="moduleBookmark">
                 <a href="#/bookmark">
                     <span class="fa fa-bookmark" title="bookmark"></span>
                 </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+                ng-if="moduleBookmark">
                 <a class="dropdown-toggle"
                    data-toggle="dropdown">
                     <b class="caret"></b>
@@ -85,12 +87,13 @@
                 </ul>
             </li>
 
-            <li>
+            <li ng-if="moduleFeed">
                 <a href="#/feed/show">
                     <span class="fa fa-rss" title="rss"></span>
                 </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+                ng-if="moduleFeed">
                 <a class="dropdown-toggle"
                    data-toggle="dropdown">
                     <b class="caret"></b>
@@ -119,12 +122,13 @@
                 </ul>
             </li>
 
-            <li>
+            <li ng-if="moduleMail">
                 <a href="#/mail">
                     <span class="fa fa-envelope" title="mail"></span>
                 </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown"
+                ng-if="moduleMail">
                 <a class="dropdown-toggle"
                    data-toggle="dropdown">
                     <b class="caret"></b>

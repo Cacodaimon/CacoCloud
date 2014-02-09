@@ -10,6 +10,13 @@ angular.module('caco.general.crtl')
             $scope.webAppInstallPossible = false;
         }
 
+        try {
+            angular.module("caco.password");
+            $rootScope.passwd = true;
+        } catch(err) {
+            $rootScope.passwd = false;
+        }
+
         $scope.install = function () {
             WebApp.install();
         };

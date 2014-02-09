@@ -13,4 +13,7 @@ angular.module('caco.mail', ['ui.router', 'caco.mail.crtl', 'caco.filter.base64'
             .state('mail-manage.list',      {url: '/mail/manage',                            templateUrl: 'views/mail/manage/list.html',  controller: 'MailManageCrtl'})
             .state('mail-manage.add',       {url: '/mail/manage/add',                        templateUrl: 'views/mail/manage/add.html',   controller: 'MailManageCrtl'})
             .state('mail-manage.edit',      {url: '/mail/manage/edit/:id',                   templateUrl: 'views/mail/manage/edit.html',  controller: 'MailManageCrtl'});
+    })
+    .run(function($rootScope) {
+        $rootScope.moduleMail = true;
     });

@@ -6,4 +6,7 @@ angular.module('caco.password', ['ui.router', 'caco.password.crtl'])
             .state('password.add',  {url: '/password/add',      templateUrl: 'views/password/add.html',   controller: 'PasswordCrtl'})
             .state('password.edit', {url: '/password/edit/:id', templateUrl: 'views/password/edit.html',  controller: 'PasswordCrtl'})
             .state('password.auth', {url: '/password/auth',     templateUrl: 'views/password/auth.html',  controller: 'PasswordCrtl'});
+    })
+    .run(function($rootScope) {
+        $rootScope.modulePassword = true;
     });
