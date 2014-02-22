@@ -274,13 +274,13 @@ class IMAP
         }
 
         if (property_exists($overview, 'subject')) {
-            $mailHeader->subject = utf8_encode(imap_utf8($overview->subject));
+            $mailHeader->subject = imap_utf8($overview->subject);
         }
         if (property_exists($overview, 'from')) {
-            $mailHeader->from = utf8_encode(imap_utf8($overview->from));
+            $mailHeader->from = imap_utf8($overview->from);
         }
         if (property_exists($overview, 'to')) {
-            $mailHeader->to = utf8_encode(imap_utf8($overview->subject));
+            $mailHeader->to = imap_utf8($overview->to);
         }
         if (property_exists($overview, 'in_reply_to')) {
             $mailHeader->inReplyToMessageId = trim($overview->in_reply_to);
