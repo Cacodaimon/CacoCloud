@@ -49,4 +49,4 @@ echo -n "URL: "
 read -r URL
 php cli/run_cli.php --cli=Caco\\Config\\CLI\\Manage -a update -i $ID -v $URL
 
-./run_tests.sh
+#./run_tests.sh

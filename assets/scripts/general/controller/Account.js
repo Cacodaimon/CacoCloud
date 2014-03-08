@@ -1,5 +1,7 @@
 angular.module('caco.general.crtl', ['caco.Credentials', 'caco.InstallWebApp'])
     .controller('AccountCrtl', function ($rootScope, $scope, $location, Credentials) {
+        $scope.basicAuthPersist = 0;
+
         $scope.login = function () {
             Credentials.key.server = $scope.keyServer;
 
@@ -8,8 +10,8 @@ angular.module('caco.general.crtl', ['caco.Credentials', 'caco.InstallWebApp'])
                 pass: $scope.basicAuthPass
             };
 
-            if ($scope.basicAuthPersist) {
-                Credentials.persist();
+            if ($scope.basicAuthPersist > 0) {
+                Credentials.persist($scope.basicAuthPersist);
             }
 
             $location.path('/welcome');

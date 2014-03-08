@@ -30,13 +30,19 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-lg-offset-2 col-lg-10 input-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                   ng-model="basicAuthPersist"> Rember me
-                        </label>
-                    </div>
+                <label for="basic-auth--persist"
+                       class="col-lg-2 control-label">Rember me</label>
+                <div class="col-lg-10 input-group">
+                    <select id="basic-auth--persist"
+                            class="form-control"
+                            ng-model="basicAuthPersist">
+                        <option value="0" selected="selected">No</option>
+                        <option value="600">10 minutes</option>
+                        <option value="1800">30 minutes</option>
+                        <option value="3600">1 hour</option>
+                        <option value="86400">1 day</option>
+                        <option value="31622400">1 year</option>
+                    </select>
                 </div>
             </div>
 

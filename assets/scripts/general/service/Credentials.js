@@ -12,8 +12,8 @@ angular.module('caco.Credentials', ['caco.TemporaryStorage'])
             };
         };
 
-        this.persist = function () {
-            TempStorage.setObject('caco.Credentials', this.basicAuth, 8640000 /*one day*/);
+        this.persist = function (seconds) {
+            TempStorage.setObject('caco.Credentials', this.basicAuth, seconds * 1000);
         };
 
         this.load = function () {
