@@ -3,7 +3,6 @@ namespace Caco\Password;
 
 use \Slim\Slim;
 use \Caco\Mcrypt;
-use \Caco\Slim\ISlimApp;
 use \Caco\Password\Model\Container;
 
 /**
@@ -11,17 +10,12 @@ use \Caco\Password\Model\Container;
  * @package Caco\Password
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST implements ISlimApp
+class REST
 {
     /**
      * @var \Slim\Slim
      */
     protected $app;
-
-    /**
-     * @var string
-     */
-    protected $group = '';
 
     /**
      * @var \Caco\Mcrypt
@@ -32,6 +26,7 @@ class REST implements ISlimApp
     {
         $this->crypto = new Mcrypt;
         $this->group  = 'password';
+        $this->app    = Slim::getInstance();
     }
 
     /**
@@ -129,22 +124,6 @@ class REST implements ISlimApp
         } else {
             $this->app->render(404);
         }
-    }
-
-    public function register(Slim $app)
-    {
-        $this->app = $app;
-
-        $app->group(
-            '/' . $this->group,
-            function () {
-                $this->app->get('/:key/:id',        [$this, 'one'])     ->conditions(['id' => '\d+']);
-                $this->app->get('/:key',            [$this, 'all']);
-                $this->app->post('/:key',           [$this, 'add']);
-                $this->app->delete('/:key/:id',     [$this, 'delete'])  ->conditions(['id' => '\d+']);
-                $this->app->put('/:key/:id',        [$this, 'edit'])    ->conditions(['id' => '\d+']);
-            }
-        );
     }
 
     /**

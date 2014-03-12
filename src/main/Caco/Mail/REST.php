@@ -4,7 +4,6 @@ namespace Caco\Mail;
 use Caco\Mail\SMTP\Account as SMTPAccount;
 use Caco\Mail\IMAP\Account as IMAPAccount;
 use Slim\Slim;
-use Caco\Slim\ISlimApp;
 use PHPMailer;
 
 /**
@@ -12,7 +11,7 @@ use PHPMailer;
  * @package Caco\Mail
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST implements ISlimApp
+class REST
 {
     /**
      * @var \Slim\Slim
@@ -33,6 +32,7 @@ class REST implements ISlimApp
     {
         $this->mcryptAccount = new AccountMcrypt;
         $this->imapFacade    = new IMAP;
+        $this->app           = Slim::getInstance();
     }
 
     /**
@@ -233,26 +233,5 @@ class REST implements ISlimApp
         $this->imapFacade->connect($imapAccount, base64_decode($mailBox));
 
         $this->app->render(200, ['response' => $this->imapFacade->deleteMail($uniqueId)]);
-    }
-
-    public function register(Slim $app)
-    {
-        $this->app = $app;
-
-        $app->group(
-            '/mail',
-                function () {
-                    $this->app->get('/:key/account/:id/mailbox/:mailBox/mail/:uniqueId', [$this, 'showMail']);
-                    $this->app->delete('/:key/account/:id/mailbox/:mailBox/mail/:uniqueId', [$this, 'deleteMail']);
-                    $this->app->get('/:key/account/:id/mailbox/:mailBox', [$this, 'mailHeaders']);
-                    $this->app->get('/:key/account/:id/mailbox', [$this, 'mailBoxes']);
-                    $this->app->post('/:key/account/:id/send', [$this, 'sendMail']);
-                    $this->app->get('/:key/account', [$this, 'allAccounts']);
-                    $this->app->get('/:key/account/:id', [$this, 'oneAccount']);
-                    $this->app->post('/:key/account', [$this, 'addAccount']);
-                    $this->app->put('/:key/account/:id', [$this, 'editAccount']);
-                    $this->app->delete('/:key/account/:id', [$this, 'deleteAccount']);
-                }
-        );
     }
 }

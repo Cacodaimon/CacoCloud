@@ -2,18 +2,24 @@
 namespace Caco\Config;
 
 use Caco\Config\Model\Config;
+use Slim\Slim;
 
 /**
  * Class REST
  * @package Caco\Config
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST implements \Caco\Slim\ISlimApp
+class REST
 {
     /**
      * @var \Slim\Slim
      */
     protected $app;
+
+    public function __construct()
+    {
+        $this->app = Slim::getInstance();
+    }
 
     public function one($key)
     {
@@ -71,24 +77,5 @@ class REST implements \Caco\Slim\ISlimApp
         } else {
             $this->app->render(404);
         }
-    }
-
-    /**
-     * Register a slim instance with the current rest class.
-     *
-     * @param \Slim\Slim $app
-     * @param string $group
-     */
-    public function register(\Slim\Slim $app)
-    {
-        $this->app = $app;
-
-        $app->group('/config', function () {
-                $this->app->get('/:key',    [$this, 'one']);
-                $this->app->get('',         [$this, 'all']);
-                $this->app->post('',        [$this, 'add']);
-                $this->app->delete('/:key', [$this, 'delete']);
-                $this->app->put('/:key',    [$this, 'edit']);
-            });
     }
 }

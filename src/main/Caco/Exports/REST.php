@@ -10,18 +10,24 @@ use Caco\Exports\Exporter\Opml;
 use Caco\Exports\Exporter\Xbel;
 use Caco\Feed\Model\Feed;
 use Caco\Feed\Model\Item;
+use Slim\Slim;
 
 /**
  * Class REST
  * @package Caco\Config
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST implements \Caco\Slim\ISlimApp
+class REST
 {
     /**
      * @var \Slim\Slim
      */
     protected $app;
+
+    public function __construct()
+    {
+        $this->app = Slim::getInstance();
+    }
 
     /**
      * GET /export/feed/:id/atom
@@ -85,23 +91,5 @@ class REST implements \Caco\Slim\ISlimApp
             $response->header('Content-Disposition', 'attachment; filename=' . $exporter->getFileName());
         }
         $response->body($exporter->buildXml());
-    }
-
-    /**
-     * Register a slim instance with the current rest class.
-     *
-     * @param \Slim\Slim $app
-     * @param string $group
-     */
-    public function register(\Slim\Slim $app)
-    {
-        $this->app = $app;
-
-        $app->group('/export', function () {
-                $this->app->get('/feed/opml',     [$this, 'getAllFeedsOpml']);
-                $this->app->get('/feed/:id/atom', [$this, 'getFeedItemsAtom'])->conditions(['id' => '\d+']);
-                $this->app->get('/bookmark/xbel', [$this, 'getBookmarksXbel'])->conditions(['id' => '\d+']);
-                $this->app->get('/bookmark/html', [$this, 'getBookmarksHtml'])->conditions(['id' => '\d+']);
-            });
     }
 }

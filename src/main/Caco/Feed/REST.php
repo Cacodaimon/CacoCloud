@@ -5,24 +5,18 @@ use Caco\Feed\Model\Feed;
 use Caco\Feed\Model\Item;
 use Caco\Feed\Model\ItemQueue;
 use \Slim\Slim;
-use \Caco\Slim\ISlimApp;
 
 /**
  * Class REST
  * @package Caco\Feed
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST implements ISlimApp
+class REST
 {
     /**
      * @var \Slim\Slim
      */
     protected $app;
-
-    /**
-     * @var string
-     */
-    protected $group = '';
 
     /**
      * @var Manager
@@ -33,6 +27,7 @@ class REST implements ISlimApp
     {
         $this->manager = new Manager;
         $this->manager->setFeedReader(new SimplePieFeedReader);
+        $this->app = Slim::getInstance();
     }
 
     /**
@@ -220,30 +215,5 @@ class REST implements ISlimApp
         } else {
             $this->app->render(404);
         }
-    }
-
-    public function register(Slim $app)
-    {
-        $this->app = $app;
-
-        $app->group(
-            '/feed',
-            function () {
-                $this->app->get('/update',                    [$this, 'updateAllFeeds'])->conditions(['id' => '\d+']);
-                $this->app->get('/update/:id',                [$this, 'updateFeed'])    ->conditions(['id' => '\d+']);
-                $this->app->get('/:id',                       [$this, 'getFeed'])       ->conditions(['id' => '\d+']);
-                $this->app->get('',                           [$this, 'getAllFeeds']);
-                $this->app->get('/item',                      [$this, 'getAllItems']);
-                $this->app->get('/:id/item',                  [$this, 'getItems'])      ->conditions(['id' => '\d+']);
-                $this->app->get('/item/:id',                  [$this, 'getItem'])       ->conditions(['id' => '\d+']);
-                $this->app->get('/item/queue',                [$this, 'dequeueItem']);
-                $this->app->put('/:id',                       [$this, 'editFeed'])      ->conditions(['id' => '\d+']);
-                $this->app->post('',                          [$this, 'addFeed']);
-                $this->app->post('/item/queue/:id',           [$this, 'enqueueItem'])   ->conditions(['id' => '\d+']);
-                $this->app->delete('/:id',                    [$this, 'deleteFeed'])    ->conditions(['id' => '\d+']);
-                $this->app->delete('/item/:id',               [$this, 'deleteItem'])    ->conditions(['id' => '\d+']);
-                $this->app->get('/calculate-update-interval', [$this, 'calculateUpdateInterval']);
-            }
-        );
     }
 }

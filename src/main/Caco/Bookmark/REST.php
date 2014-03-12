@@ -2,17 +2,18 @@
 namespace Caco\Bookmark;
 
 use \Caco\Bookmark\Model\Bookmark;
+use Slim\Slim;
 
 /**
  * Class REST
  * @package Caco\Bookmark
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
-class REST extends \Caco\Slim\REST
+class REST
 {
     public function __construct()
     {
-        $this->group = 'bookmark';
+        $this->app = Slim::getInstance();
     }
 
     /**
