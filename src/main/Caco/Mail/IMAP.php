@@ -140,6 +140,7 @@ class IMAP
 
         $headers  = [];
         $overview = imap_fetch_overview($this->ressource, sprintf('%d:%d', $start, $end), 0);
+
         foreach ($overview as $header) {
             $headers[] = $this->mailHeaderFromImapOverview($header);
         }
@@ -274,7 +275,7 @@ class IMAP
         }
 
         if (property_exists($overview, 'subject')) {
-            $mailHeader->subject = imap_utf8($overview->subject);
+            $mailHeader->subject = imap_utf8($this->removeInvalidChars($overview->subject));
         }
         if (property_exists($overview, 'from')) {
             $mailHeader->from = imap_utf8($overview->from);
@@ -301,7 +302,6 @@ class IMAP
     protected function mailFromImapHeader(\stdClass $imapHeader)
     {
         $mail                = new Mail;
-        $mail->subject       = imap_utf8($imapHeader->subject);
         $mail->to            = imap_utf8($imapHeader->toaddress);
         $mail->from          = imap_utf8($imapHeader->fromaddress);
         $mail->size          = intval($imapHeader->Size);
@@ -312,6 +312,11 @@ class IMAP
         $mail->answered      = $imapHeader->Answered == ' ' ? false : true;
         $mail->deleted       = $imapHeader->Deleted == ' ' ? false : true;
         $mail->draft         = $imapHeader->Draft == ' ' ? false : true;
+
+
+        if (property_exists($imapHeader, 'subject')) {
+            $mail->subject = imap_utf8($this->removeInvalidChars($imapHeader->subject));
+        }
 
         if (property_exists($imapHeader, 'date')) {
             $mail->date = $imapHeader->date;
@@ -344,8 +349,6 @@ class IMAP
         } else if ($imapHeader->Unseen == ' ') {
             $mail->seen = true;
         }
-
-        $mail->recent = false;
 
         return $mail;
     }
@@ -485,6 +488,7 @@ class IMAP
     protected function decodeBody(\stdClass $structure, $body)
     {
         $charset = $this->getBodyCharset($structure);
+        $body    = $this->removeInvalidChars($body);
 
         switch ($structure->encoding) {
             case 3:
@@ -495,5 +499,20 @@ class IMAP
         }
 
         return $charset === false ? $body : mb_convert_encoding($body, 'UTF-8', $charset);
+    }
+
+    /**
+     * Removes invalid characters from the given text.
+     *
+     * @param string $text
+     * @return string
+     */
+    protected function removeInvalidChars($text)
+    {
+        if (mb_detect_encoding($text) !== false) {
+            return $text;
+        }
+
+        return preg_replace('/[^[:print:]]/', '', $text);
     }
 }
