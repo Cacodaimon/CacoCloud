@@ -2,7 +2,6 @@
 namespace Caco\Exports\Exporter;
 
 use Caco\Bookmark\Model\Bookmark;
-use XMLWriter;
 
 /**
  * Class Xbel
