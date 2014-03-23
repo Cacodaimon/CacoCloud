@@ -47,7 +47,7 @@ class ChangeServerKey extends AbstractCLI
 
         $container = new Container;
         $containerList = $container->readList();
-        foreach ($containerList as $container) {
+        foreach ($containerList as $container) { /** @var Container $container */
             $data = $this->crypto->decrypt($container->getContainer(), $from);
 
 
