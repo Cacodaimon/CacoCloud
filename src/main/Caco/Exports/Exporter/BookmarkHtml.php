@@ -7,7 +7,7 @@ use XMLWriter;
 /**
  * Class Xbel
  *
- * Exports the given bookmarks as XBEL 1.0 xml string.
+ * Exports the given bookmarks as a Netscape bookmark HTML file.
  *
  * @package Caco\Exports\Exporter
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
@@ -43,7 +43,7 @@ class BookmarkHtml implements IXmlExporter
     }
 
     /**
-     * Builds and returns the XBEL xml.
+     * Builds and returns the bookmark export file.
      *
      * @return string
      */
