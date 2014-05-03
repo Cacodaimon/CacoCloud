@@ -24,4 +24,21 @@ angular.module('caco.mail.crtl')
                 }
             });
         });
+
+
+
+        $scope.refresh = function (accountId) {
+            for (var i = $scope.accounts.length - 1; i >= 0; i--) {
+                if ($scope.accounts[i].id == accountId) {
+                    $scope.accounts[i].refresh = true;
+                }
+            }
+            MailBoxesREST.all({id: accountId}, function (data1) {
+                for (var i = $scope.accounts.length - 1; i >= 0; i--) {
+                    if ($scope.accounts[i].id == accountId) {
+                        $scope.accounts[i] = data1.response;
+                    }
+                }
+            });
+        };
     });

@@ -9,6 +9,11 @@
                     <strong>
                         {{account.name}}
                     </strong>
+                    <button class="btn btn-info btn-xs pull-right"
+                            ng-click="refresh(account.id)">
+                        <span ng-show="account.refresh" class="fa fa-refresh fa-spin"></span>
+                        <span ng-hide="account.refresh" class="fa fa-refresh"></span>
+                    </button>
                     <ul class="nav nav-pills nav-stacked nav-stacked-deep">
                         <li ng-repeat="mailBox in account.mailBoxes"
                             ng-class="{active: id == account.id && mailBoxBase64 == mailBox.base64Name}">
