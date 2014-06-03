@@ -43,9 +43,10 @@ class User extends MiniAR
      * Reads a user from the database.
      *
      * @param string $userName
+     * @param string $select
      * @return bool
      */
-    public function read($userName)
+    public function read($userName, $select = null)
     {
         $query = sprintf('SELECT %s FROM `%s` WHERE `userName` = ? LIMIT 1;', $this->getFieldList(), $this->getTableName());
         $sth   = $this->pdo->prepare($query);

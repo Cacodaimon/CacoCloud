@@ -59,9 +59,10 @@ class Item extends \Caco\MiniAR
      * Read an active record from the database by it's id.
      *
      * @param int $id
+     * @param string $select
      * @return bool
      */
-    public function read($id)
+    public function read($id, $select = null)
     {
         $query = sprintf('  SELECT
                                 i.`id`,
