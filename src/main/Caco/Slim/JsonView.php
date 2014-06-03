@@ -8,7 +8,14 @@ namespace Caco\Slim;
  */
 class JsonView extends \Slim\View
 {
-    public function render($status)
+    /**
+     * Renders the template.
+     *
+     * @param string $template The HTTP status code.
+     * @param null $data Not used.
+     * @return string|void
+     */
+    public function render($status, $data = null)
     {
         $app = \Slim\Slim::getInstance();
         $app->contentType('application/json');
