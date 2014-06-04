@@ -9,11 +9,13 @@ You can find some screenshots in the [wiki](https://github.com/Cacodaimon/CacoCl
 
 ## Installation
 
-On a *nix machine you can run the `build.sh` script. 
+For installing you can simply grap the archive file from the [homepage](http://cacodaimon.github.io/CacoCloud/) or build CacoCoud by your self. 
+Watch the [video](https://www.youtube.com/watch?v=6nWa1qQuda4) how to install CacoCloud, from the archive [file](http://cacodaimon.github.io/CacoCloud/), in less than two minutes on a DigitalOcean VM with Debain Wheezy.
+
+If you wanna build it by your self, on a *nix machine you can run the `build.sh` script. 
 This script will install the needed [node.js](http://nodejs.org/) modules for running grunt, installs [Composer](http://getcomposer.org/) and let the compser install all required PHP libs and creates a new and empty database. It also lets you create new user account.
 
 If you are planning to use the password manager component and using [Apache](http://httpd.apache.org/) you should modify log format, take the example virtual host file from `config/vhost.cfg`! And don't forget to use https instead of http!
-
 
 ## Used components
 
