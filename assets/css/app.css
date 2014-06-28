@@ -3,6 +3,10 @@ body {
     overflow-y: scroll;
 }
 
+.scroll-x {
+    overflow-x: scroll;
+}
+
 .nav-stacked-deep ul {
     margin-left: 15px !important;
 }
