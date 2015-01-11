@@ -39,7 +39,7 @@ $app->get('/', function () use ($app) {
 
 $app->get('/database', function () use ($app, $pdo) {
         if (installationFinished()) {
-            $app->redirect('/install/already-installed');
+            $app->redirect('already-installed');
 
             return;
         }
@@ -84,7 +84,7 @@ $app->get('/user', function () use ($app, $pdo) {
 
 $app->post('/user', function () use ($app, $pdo) {
         if (installationFinished()) {
-            $app->redirect('/install/already-installed');
+            $app->redirect('already-installed');
 
             return;
         }
@@ -95,7 +95,7 @@ $app->post('/user', function () use ($app, $pdo) {
 
         if ($password != $passwordConfirm) {
             $app->flash('warning', 'The password did not matched the confirmation password!');
-            $app->redirect('/install/user');
+            $app->redirect('user');
 
             return;
         }
@@ -106,7 +106,7 @@ $app->post('/user', function () use ($app, $pdo) {
         $user->save();
 
         $app->flash('success', ' Your user account has been added successfully. ');
-        $app->redirect('/install/finish');
+        $app->redirect('finish');
     });
 
 $app->get('/finish', function () use ($app, $pdo) {
@@ -136,13 +136,13 @@ $app->get('/update', function () use ($app, $pdo) {
             $app->flash('success', 'Update: Nothing to do&hellip;');
         }
 
-        $app->redirect('/install/finish');
+        $app->redirect('finish');
     });
 
 $app->get('/already-installed', function () use ($app, $pdo) {
         $app->flash('danger', 'It seems that CacoCloud has been already installed! ');
-        $app->flash('warning', 'If not please removed the <code>public/install/finished</code> file! ');
-        $app->redirect('/install/');
+        $app->flash('warning', 'If not please removed the <code>/public/finished</code> file! ');
+        $app->redirect('/');
     });
 
 

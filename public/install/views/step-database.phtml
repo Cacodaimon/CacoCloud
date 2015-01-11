@@ -1,5 +1,7 @@
 <?php include __DIR__ . '/header.phtml' ?>
 <?php
+/** @var int $databaseVersion */
+/** @var bool $dbFound */
 /** @var bool $dbExists */
 /** @var bool $dbCreated */
 /** @var int $errorCode */
@@ -51,7 +53,7 @@
 <hr />
 
 <?php if ($dbFound || $dbCreated): ?>
-    <a href="/install/user" class="btn btn-success">
+    <a href="user" class="btn btn-success">
         <span class="fa fa-chevron-right"></span> Proceed
     </a>
 <?php else: ?>
