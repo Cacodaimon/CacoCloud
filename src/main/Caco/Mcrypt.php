@@ -103,11 +103,7 @@ class Mcrypt
     protected function generateSalt()
     {
         $length = mcrypt_enc_get_key_size(mcrypt_module_open($this->cipher, '', $this->mode, ''));
-        $salt = (new SaltGenerator)->generate($length);
-
-        var_export($salt);
-
-        return $salt;
+        return (new SaltGenerator)->generate($length);
     }
 
     /**
