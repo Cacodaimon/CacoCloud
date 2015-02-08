@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /icon/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]

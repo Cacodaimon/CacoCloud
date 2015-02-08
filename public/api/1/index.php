@@ -9,7 +9,7 @@ $pdo->exec('PRAGMA foreign_keys = ON');
 $app = new \Slim\Slim();
 $app->view(new \Caco\Slim\JsonView);
 $app->add($auth = new \Caco\Slim\Auth\Basic);
-$auth->setRealm('Caco Cloud');
+$auth->setRealm('CacoCloud');
 
 $app->group('/password', function () use ($app) {
         $app->get('/:key/:id',    '\Caco\Password\REST:one')   ->conditions(['id' => '\d+']);
