@@ -35,6 +35,9 @@ class From2To3 extends AbstractCLI
         return 0;
     }
 
+    /**
+     * Upgrades the DB from Version 2 to 3.
+     */
     protected function upgradeDb() {
         $this->printLine('Upgrading the DB…');
         $pdo = (new Icon)->getPdo();
@@ -60,6 +63,9 @@ class From2To3 extends AbstractCLI
         $this->printLine('DB upgraded to 3!');
     }
 
+    /**
+     * Imports the favicons into the database and deletes them from filesystem.
+     */
     protected function importIcons()
     {
         $this->printLine('Importing icons…');
