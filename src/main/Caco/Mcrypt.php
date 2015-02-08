@@ -1,6 +1,8 @@
 <?php
 namespace Caco;
 
+use InvalidArgumentException;
+
 /**
  * Mcrypt wrapper class.
  *
@@ -10,17 +12,6 @@ namespace Caco;
  */
 class Mcrypt
 {
-    /**
-     * @var array
-     */
-    protected static $validCiphers = [
-        MCRYPT_TWOFISH,
-        MCRYPT_RIJNDAEL_128,
-        MCRYPT_RIJNDAEL_192,
-        MCRYPT_RIJNDAEL_256,
-        MCRYPT_SERPENT
-    ];
-
     /**
      * @var string
      */
@@ -99,7 +90,7 @@ class Mcrypt
     protected function getKeyHash($key, $salt)
     {
         $length = mcrypt_enc_get_key_size(mcrypt_module_open($this->cipher, '', $this->mode, ''));
-        $hash   = crypt($key, sprintf('$2a$%s$%s$', $this->keyHashRounds, $salt));
+        $hash   = crypt($key, sprintf('$2y$%s$%s$', $this->keyHashRounds, $salt));
 
         return substr($hash, $length * -1);
     }
@@ -111,14 +102,10 @@ class Mcrypt
      */
     protected function generateSalt()
     {
-        $length     = mcrypt_enc_get_key_size(mcrypt_module_open($this->cipher, '', $this->mode, ''));
-        $validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        $salt       = '';
-        $count      = strlen($validChars) - 1;
+        $length = mcrypt_enc_get_key_size(mcrypt_module_open($this->cipher, '', $this->mode, ''));
+        $salt = (new SaltGenerator)->generate($length);
 
-        while ($length--) {
-            $salt .= $validChars[mt_rand(0, $count)];
-        }
+        var_export($salt);
 
         return $salt;
     }
@@ -136,14 +123,14 @@ class Mcrypt
     /**
      * Sets the cipher.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @param string $cipher
      */
     public function setCipher($cipher)
     {
-        if (!in_array($cipher, static::$validCiphers)) {
-            $msg = 'Given cipher is not supported, supported ciphers are: ' . implode(', ', static::$validCiphers);
-            throw new \InvalidArgumentException($msg);
+        if (!in_array($cipher, mcrypt_list_algorithms())) {
+            $msg = 'Given cipher is not supported, supported ciphers are: ' . implode(', ', mcrypt_list_algorithms());
+            throw new InvalidArgumentException($msg);
         }
 
         $this->cipher = $cipher;

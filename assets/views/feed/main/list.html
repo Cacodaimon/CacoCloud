@@ -18,7 +18,7 @@
                 ng-repeat="item in items | filter:searchText | orderBy:'date':true | paginate">
                 <td>
                     <a href="#/feed/show/{{item.id_feed}}/item/{{item.id}}#item-{{item.id}}">
-                        <img ng-src="icons/feed/{{item.id_feed}}.ico"
+                        <img ng-src="api/1/icon/feed/{{item.id_feed}}"
                              width="16px"
                              height="16px" />
                     </a>

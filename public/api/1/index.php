@@ -72,4 +72,9 @@ $app->group('/export', function () use ($app) {
         $app->get('/bookmark/html', '\Caco\Exports\REST:getBookmarksHtml')->conditions(['id' => '\d+']);
     });
 
+$app->group('/icon', function () use ($app) {
+    $app->get('/feed/:id', '\Caco\Icon\REST:oneFeed')        ->conditions(['id' => '\d+']);
+    $app->get('/bookmark/:id', '\Caco\Icon\REST:oneBookmark')->conditions(['id' => '\d+']);
+});
+
 $app->run();

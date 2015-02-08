@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS item (
   read INTEGER,
   FOREIGN KEY (id_feed) REFERENCES feed(id) ON DELETE CASCADE
 );
-CREATE INDEX fk_item_id_feed ON item (id_feed);
+CREATE INDEX IF NOT EXISTS fk_item_id_feed ON item (id_feed);
 
 CREATE TABLE IF NOT EXISTS itemqueue (
   id INTEGER PRIMARY KEY,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS itemqueue (
   inserted INTEGER NOT NULL,
   FOREIGN KEY (id_item) REFERENCES item(id) ON DELETE CASCADE
 );
-CREATE INDEX fk_itemqueue_id_item ON itemqueue (id_item);
+CREATE INDEX IF NOT EXISTS fk_itemqueue_id_item ON itemqueue (id_item);
 
 CREATE TABLE IF NOT EXISTS config (
   id INTEGER PRIMARY KEY,
@@ -67,6 +67,18 @@ CREATE TABLE IF NOT EXISTS mailaccount (
   cipher TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS icon (
+  id INTEGER PRIMARY KEY,
+  inserted INTEGER NOT NULL,
+  id_feed INTEGER UNIQUE,
+  id_bookmark INTEGER UNIQUE,
+  data BLOB NOT NULL,
+  FOREIGN KEY (id_feed) REFERENCES feed(id) ON DELETE CASCADE
+  FOREIGN KEY (id_bookmark) REFERENCES bookmark(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS fk_icon_id_feed ON icon (id_feed);
+CREATE INDEX IF NOT EXISTS fk_icon_id_bookmark ON icon (id_bookmark);
+
 INSERT INTO config (key, value) VALUES ('auto-cleanup-enabled', 'true');
 INSERT INTO config (key, value) VALUES ('auto-cleanup-days', 7);
 INSERT INTO config (key, value) VALUES ('auto-cleanup-min-item-count', 250);
@@ -77,5 +89,5 @@ INSERT INTO config (key, value) VALUES ('auto-cleanup-max-item-count-enabled', '
 INSERT INTO config (key, value) VALUES ('update-interval-min', 600);
 INSERT INTO config (key, value) VALUES ('update-interval-max', 604800);
 
-INSERT INTO config (key, value) VALUES ('database-version', 2);
+INSERT INTO config (key, value) VALUES ('database-version', 3);
 INSERT INTO config (key, value) VALUES ('api-url', 'http://localhost:8000/api');

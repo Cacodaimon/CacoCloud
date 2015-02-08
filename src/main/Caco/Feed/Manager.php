@@ -5,6 +5,7 @@ namespace Caco\Feed;
 use Caco\Config\Model\Config;
 use Caco\Feed\Model\Feed;
 use Caco\Feed\Model\Item;
+use Caco\Icon\FaviconDownloader;
 
 /**
  * Class Manager
@@ -35,7 +36,7 @@ class Manager
         }
 
         $this->updateFeed($feed);
-        $this->saveFavicon($this->feedReader->getImageUrl(), $feed->id);
+        (new FaviconDownloader)->downloadFeed($feed, $this->feedReader->getImageUrl());
 
         return $feed;
     }
@@ -44,7 +45,6 @@ class Manager
     {
         $feed = new Feed;
         if ($feed->read($id)) {
-            $this->deleteFavicon($id);
 
             return $feed->delete();
         } else {
@@ -169,30 +169,6 @@ class Manager
         }
 
         return (new Item)->cleanup($feed, $config);
-    }
-
-    /**
-     * Deletes the favicon.
-     *
-     * @param string $url
-     * @param int $id
-     */
-    protected function deleteFavicon($id)
-    {
-        $fileName = sprintf('public/icons/feed/%d.ico', $id);
-
-        file_exists($fileName) && unlink($fileName);
-    }
-
-    /**
-     * Saves the favicon.
-     *
-     * @param string $url
-     * @param int $id
-     */
-    protected function saveFavicon($iconUrl, $id)
-    {
-        copy($iconUrl, sprintf('public/icons/feed/%d.ico', $id));
     }
 
     /**

@@ -41,6 +41,15 @@
     </p>
 </div>
 
+<div class="alert alert-<?php echo $mcrypt ? 'success' : 'warning' ?>">
+    <strong>
+        <span class="fa <?php echo $mcrypt ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP openssl
+    </strong>
+    <p>
+        Optional, needed by the password manager and mail client!
+    </p>
+</div>
+
 <div class="alert alert-<?php echo $imap ? 'success' : 'warning' ?>">
     <strong>
         <span class="fa <?php echo $imap ? 'fa-check-square-o' : 'fa-square-o' ?>"></span> PHP imap

@@ -168,7 +168,7 @@ abstract class MiniAR
         $sth->execute($bind);
         $this->id = intval($this->pdo->lastInsertId());
 
-        return $sth->rowCount() == 1;
+        return $sth->rowCount() === 1;
     }
 
     /**
@@ -197,7 +197,7 @@ abstract class MiniAR
 
         $sth->execute($bind);
 
-        return $sth->rowCount() == 1;
+        return $sth->rowCount() === 1;
     }
 
     /**
@@ -250,7 +250,7 @@ abstract class MiniAR
 
         $this->clear();
 
-        return $sth->rowCount() == 1;
+        return $sth->rowCount() === 1;
     }
 
     /**

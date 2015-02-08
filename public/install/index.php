@@ -26,6 +26,7 @@ $app->get('/', function () use ($app) {
             'https'              => $app->request()->getScheme() == 'https',
             'imap'               => extension_loaded('imap'),
             'mcrypt'             => extension_loaded('mcrypt'),
+            'openssl'            => extension_loaded('openssl'),
             'pdo_sqlite'         => extension_loaded('pdo_sqlite'),
             'pcre'               => extension_loaded('pcre'),
             'curl'               => extension_loaded('curl'),

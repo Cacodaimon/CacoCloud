@@ -2,6 +2,8 @@
 namespace Caco\Slim\Auth\Model;
 
 use \Caco\MiniAR;
+use Caco\SaltGenerator;
+use PDO;
 
 /**
  * Class User
@@ -27,16 +29,9 @@ class User extends MiniAR
      */
     public function setPassword($password)
     {
-        $validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        $salt       = '';
-        $count      = strlen($validChars) - 1;
-        $length     = 32;
+        $salt = (new SaltGenerator)->generate(32);
 
-        while ($length--) {
-            $salt .= $validChars[mt_rand(0, $count)];
-        }
-
-        $this->hash = crypt($password, sprintf('$2a$10$%s$', $salt));
+        $this->hash = crypt($password, sprintf('$2y$10$%s$', $salt));
     }
 
     /**
@@ -52,7 +47,7 @@ class User extends MiniAR
         $sth   = $this->pdo->prepare($query);
 
         $sth->execute([$userName]);
-        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($result)) {
             return false;

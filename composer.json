@@ -2,9 +2,11 @@
     "name": "caco/Cloud",
     "require": {
         "php": ">=5.4.0",
-        "slim/slim": "2.4.*",
+        "slim/slim": "2.5.*",
         "simplepie/simplepie": "1.*",
-        "phpmailer/phpmailer": "5.2.*"
+        "phpmailer/phpmailer": "5.2.*",
+        "guzzlehttp/guzzle": "~5.2",
+        "arthurhoaro/favicon": "1.1.*"
     },
     "autoload" : {
         "classmap" : ["src/main"]

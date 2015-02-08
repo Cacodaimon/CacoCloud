@@ -2,6 +2,8 @@
 namespace Caco\Bookmark;
 
 use \Caco\Bookmark\Model\Bookmark;
+use Caco\Icon\FaviconDownloader;
+use GuzzleHttp\Client;
 use Slim\Slim;
 
 /**
@@ -52,7 +54,7 @@ class REST
         $bookmark->date = isset($data['date']) && is_numeric($data['date']) ? intval($data['date']) : time();
 
         if ($bookmark->save()) {
-            $this->saveFavicon($bookmark->url, $bookmark->id);
+            (new FaviconDownloader)->downloadBookmark($bookmark);
 
             $this->app->render(201, ['response' => $bookmark->id]);
         } else {
@@ -88,7 +90,6 @@ class REST
     {
         $bookmark = new Bookmark;
         if ($bookmark->read($id)) {
-            $this->deleteFavicon($id);
             $this->app->render($bookmark->delete() ? 200 : 500, ['response' => $id]);
         } else {
             $this->app->render(404);
@@ -108,51 +109,15 @@ class REST
             return $default;
         }
 
-        preg_match('/<title>(.+)<\/title>/', @file_get_contents($url), $matches);
+        $client = new Client();
+        $response = $client->get($url);
+
+        preg_match('/<title>(.+)<\/title>/', $response->getBody()->getContents(), $matches);
 
         if (empty($matches)) {
             return $url;
         }
 
-        return mb_convert_encoding($matches[1], 'UTF-8', 'UTF-8');
-    }
-
-    /**
-     * Saves the favicon.
-     *
-     * @param string $url
-     * @param int $id
-     */
-    protected function saveFavicon($url, $id)
-    {
-        copy($this->getFaviconFromUrl($url), sprintf('public/icons/bookmark/%d.ico', $id));
-    }
-
-    /**
-     * Deletes the favicon by its id.
-     *
-     * @param int $id
-     */
-    protected function deleteFavicon($id)
-    {
-        $fileName = sprintf('public/icons/bookmark/%d.ico', $id);
-
-        file_exists($fileName) && unlink($fileName);
-    }
-
-    /**
-     * Gets the favicon url for the given url.
-     *
-     * @param string $url
-     * @return string
-     */
-    protected function getFaviconFromUrl($url)
-    {
-        $url = parse_url($url);
-        $url = urlencode(sprintf('%s://%s',
-                isset($url['scheme']) ? $url['scheme'] : 'http',
-                isset($url['host']) ? $url['host'] : strtolower($url['path'])));
-
-        return "http://g.etfv.co/$url";
+        return mb_convert_encoding(html_entity_decode($matches[1]), 'UTF-8', 'UTF-8');
     }
 }
