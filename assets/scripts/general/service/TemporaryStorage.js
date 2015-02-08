@@ -32,8 +32,14 @@ angular.module('caco.TemporaryStorage', [])
                 this.cacheAdd(key, expires);
                 localStorage.setItem(key, value);
             } catch (e) {
-                if (e == QUOTA_EXCEEDED_ERR) {
-                    localStorage.clear();
+                switch (e.name) {
+                    case 'QuotaExceededError': // Chrome and IE
+                    case 'QUOTA_EXCEEDED_ERR': // Chrome
+                    case 'NS_ERROR_DOM_QUOTA_REACHED': // Firefox
+                        localStorage.clear();
+                        break;
+                    default:
+                        console.log('LocalStorage quota exceeded? ' + e.name);
                 }
             }
         };
@@ -41,7 +47,7 @@ angular.module('caco.TemporaryStorage', [])
         this.remove = function (key) {
             localStorage.removeItem(key);
             localStorage.removeItem('time-' + key);
-        }
+        };
 
         this.contains = function (key) {
             if (this.cacheValid(key)) {
