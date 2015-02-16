@@ -46,6 +46,14 @@ class Manager
         $feed = new Feed;
         if ($feed->read($id)) {
 
+            $item = new Item;
+            $item->beginTransaction();
+            $feedItems = $item->readItems($id);
+            foreach ($feedItems as $feedItem) {
+                $feedItem->delete();
+            }
+            $item->endTransaction();
+
             return $feed->delete();
         } else {
             return false;

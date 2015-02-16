@@ -4,12 +4,13 @@ namespace Caco\Upgrade\CLI;
 use Caco\CLI\AbstractCLI;
 use Caco\Config\Model\Config;
 use Caco\Icon\Model\Icon;
+use RuntimeException;
 
 /**
- * TODO
+ * Upgrades the DB from version 2 to 3.
  *
- * Class UpdateFeeds
- * @package Caco\Feed
+ * Class From2To3
+ * @packageCaco\Upgrade\CLI
  * @author Guido Krömer <mail 64 cacodaemon 46 de>
  */
 class From2To3 extends AbstractCLI
@@ -23,10 +24,11 @@ class From2To3 extends AbstractCLI
      */
     public function run()
     {
-        $version = (new Config)->readKey('database-version');
+        $config = new Config;
+        $config->readKey('database-version');
 
-        if ($version != '2') {
-            throw new RuntimeException("Database Version is \"$version\" but should be \"2\"!");
+        if ($config->value != 2) {
+            throw new RuntimeException("Database Version is \"$config->value\" but should be \"2\"!");
         }
 
         $this->upgradeDb();

@@ -69,7 +69,6 @@ class Feed extends MiniAR
                           WHERE f.`id` = ?
                           LIMIT 1;', $this->getTableName(), (new Item)->getTableName());
 
-
         return $this->readOne($query, [time(), $id]);
     }
 
