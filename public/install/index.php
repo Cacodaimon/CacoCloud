@@ -33,7 +33,6 @@ $app->get('/', function () use ($app) {
             'mbstring'           => extension_loaded('mbstring'),
             'iconv'              => extension_loaded('iconv'),
             'installDirWritable' => is_writable(__DIR__),
-            'iconDirsWritable'   => is_writable(getcwd() . '/public/icons/bookmark') && is_writable(getcwd() . '/public/icons/feed'),
             'php_5_4'            => version_compare(PHP_VERSION, '5.4.0', '>='),
         ]);
     });
